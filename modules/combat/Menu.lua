@@ -60,7 +60,7 @@ local function GetDefaultSettings()
 		minimeter_show_combat_time = true,
 		minimeter_show_group_damage_out = true,
 		minimeter_show_group_heal_out = true,
-		minimeter_font_art = "EsoUI/Common/Fonts/univers67.otf",
+		minimeter_font_art = "EsoUI/Common/Fonts/univers67.slug",
 		minimeter_font_size = 16,
 		minimeter_font_style = "thick-outline",
 		
@@ -87,7 +87,7 @@ local function GetDefaultSettings()
 		--Damage out
 		scrolling_text_show_damage_out = false,	
 		scrolling_text_out_damage_normal_size = 34,
-		scrolling_text_damage_out_normal_font_art = "EsoUI/Common/Fonts/univers57.otf",
+		scrolling_text_damage_out_normal_font_art = "EsoUI/Common/Fonts/univers57.slug",
 		scrolling_text_damage_out_parent_panelName = "panel1",
 		scrolling_text_assemble_damage_in_normal = true,
 		scrolling_text_damage_out_color_normal = AUI.Color.ConvertHexToRGBA(DEFAULT_SCROLLING_TEXT_DAMAGE_OUT_NORMAL_COLOR, 1),	
@@ -95,7 +95,7 @@ local function GetDefaultSettings()
 		--Crital Damage out
 		scrolling_text_show_critical_damage_out = false,	
 		scrolling_text_out_damage_crit_size = 34,
-		scrolling_text_damage_out_crit_font_art = "EsoUI/Common/Fonts/univers57.otf",
+		scrolling_text_damage_out_crit_font_art = "EsoUI/Common/Fonts/univers57.slug",
 		scrolling_text_damage_out_crit_parent_panelName = "panel1",
 		scrolling_text_assemble_damage_out_crit = true,		
 		scrolling_text_damage_out_color_crit = AUI.Color.ConvertHexToRGBA(DEFAULT_SCROLLING_TEXT_DAMAGE_OUT_CRIT_COLOR, 1),
@@ -103,7 +103,7 @@ local function GetDefaultSettings()
 		--Heal out
 		scrolling_text_show_heal_out = false,
 		scrolling_text_out_heal_normal_size = 34,
-		scrolling_text_heal_out_normal_font_art = "EsoUI/Common/Fonts/univers57.otf",
+		scrolling_text_heal_out_normal_font_art = "EsoUI/Common/Fonts/univers57.slug",
 		scrolling_text_heal_out_parent_panelName = "panel1",		
 		scrolling_text_assemble_heal_out_normal = true,
 		scrolling_text_heal_out_color_normal = AUI.Color.ConvertHexToRGBA(DEFAULT_SCROLLING_TEXT_HEAL_OUT_NORMAL_COLOR, 1),			
@@ -111,7 +111,7 @@ local function GetDefaultSettings()
 		--Critical Heal out
 		scrolling_text_show_critical_heal_out = false,
 		scrolling_text_out_heal_crit_size = 34,		
-		scrolling_text_heal_out_crit_font_art = "EsoUI/Common/Fonts/univers57.otf",
+		scrolling_text_heal_out_crit_font_art = "EsoUI/Common/Fonts/univers57.slug",
 		scrolling_text_heal_out_crit_parent_panelName = "panel1",
 		scrolling_text_assemble_heal_out_crit = true,
 		scrolling_text_heal_out_color_crit = AUI.Color.ConvertHexToRGBA(DEFAULT_SCROLLING_TEXT_HEAL_OUT_CRIT_COLOR, 1),				
@@ -119,7 +119,7 @@ local function GetDefaultSettings()
 		--Damage in		
 		scrolling_text_show_damage_in = false,
 		scrolling_text_in_damage_normal_size = 34,	
-		scrolling_text_damage_in_normal_font_art = "EsoUI/Common/Fonts/univers57.otf",
+		scrolling_text_damage_in_normal_font_art = "EsoUI/Common/Fonts/univers57.slug",
 		scrolling_text_damage_in_parent_panelName = "panel3",
 		scrolling_text_assemble_damage_in_normal = true,
 		scrolling_text_damage_in_color_normal = AUI.Color.ConvertHexToRGBA(DEFAULT_SCROLLING_TEXT_DAMAGE_IN_NORMAL_COLOR, 1),
@@ -127,7 +127,7 @@ local function GetDefaultSettings()
 		--Crital Damage in
 		scrolling_text_show_critical_damage_in = false,			
 		scrolling_text_in_damage_crit_size = 34,
-		scrolling_text_damage_in_crit_font_art = "EsoUI/Common/Fonts/univers57.otf",
+		scrolling_text_damage_in_crit_font_art = "EsoUI/Common/Fonts/univers57.slug",
 		scrolling_text_damage_in_crit_parent_panelName = "panel3",
 		scrolling_text_assemble_damage_in_crit = true,
 		scrolling_text_damage_in_color_crit = AUI.Color.ConvertHexToRGBA(DEFAULT_SCROLLING_TEXT_DAMAGE_IN_CRIT_COLOR, 1),			
@@ -135,7 +135,7 @@ local function GetDefaultSettings()
 		--Heal in
 		scrolling_text_show_heal_in = false,
 		scrolling_text_in_heal_normal_size = 34,	
-		scrolling_text_heal_in_normal_font_art = "EsoUI/Common/Fonts/univers57.otf",
+		scrolling_text_heal_in_normal_font_art = "EsoUI/Common/Fonts/univers57.slug",
 		scrolling_text_heal_in_parent_panelName = "panel3",
 		scrolling_text_assemble_heal_in_normal = true,
 		scrolling_text_heal_in_color_normal = AUI.Color.ConvertHexToRGBA(DEFAULT_SCROLLING_TEXT_HEAL_IN_NORMAL_COLOR, 1),	
@@ -143,7 +143,7 @@ local function GetDefaultSettings()
 		--Critical Heal in
 		scrolling_text_show_critical_heal_in = false,
 		scrolling_text_in_heal_crit_size = 34,		
-		scrolling_text_heal_in_crit_font_art = "EsoUI/Common/Fonts/univers57.otf",
+		scrolling_text_heal_in_crit_font_art = "EsoUI/Common/Fonts/univers57.slug",
 		scrolling_text_heal_in_crit_parent_panelName = "panel3",
 		scrolling_text_assemble_heal_in_crit = true,		
 		scrolling_text_heal_in_color_crit = AUI.Color.ConvertHexToRGBA(DEFAULT_SCROLLING_TEXT_HEAL_IN_CRIT_COLOR, 1),
@@ -151,126 +151,126 @@ local function GetDefaultSettings()
 		--EXP
 		scrolling_text_show_exp = false,
 		scrolling_text_exp_size = 24,
-		scrolling_text_exp_font_art = "EsoUI/Common/Fonts/univers57.otf",
+		scrolling_text_exp_font_art = "EsoUI/Common/Fonts/univers57.slug",
 		scrolling_text_exp_parent_panelName = "panel2",
 		scrolling_text_exp_color = AUI.Color.ConvertHexToRGBA(DEFAULT_SCROLLING_TEXT_EXP_COLOR, 1),		
 		
 		--CXP
 		scrolling_text_show_cxp = true,
 		scrolling_text_cxp_size = 24,
-		scrolling_text_cxp_font_art = "EsoUI/Common/Fonts/univers57.otf",
+		scrolling_text_cxp_font_art = "EsoUI/Common/Fonts/univers57.slug",
 		scrolling_text_cxp_parent_panelName = "panel2",
 		scrolling_text_cxp_color = AUI.Color.ConvertHexToRGBA(DEFAULT_SCROLLING_TEXT_CXP_COLOR, 1),
 			
 		--Tel'Var
 		scrolling_text_show_telvar = true,
 		scrolling_text_telvar_size = 24,
-		scrolling_text_telvar_font_art = "EsoUI/Common/Fonts/univers57.otf",
+		scrolling_text_telvar_font_art = "EsoUI/Common/Fonts/univers57.slug",
 		scrolling_text_telvar_parent_panelName = "panel2",
 		scrolling_text_telvar_color = AUI.Color.ConvertHexToRGBA(DEFAULT_SCROLLING_TEXT_TELVAR_COLOR, 1),	
 		
 		--alliance points
 		scrolling_text_show_ap = true,
 		scrolling_text_ap_size = 24,
-		scrolling_text_ap_font_art = "EsoUI/Common/Fonts/univers57.otf",
+		scrolling_text_ap_font_art = "EsoUI/Common/Fonts/univers57.slug",
 		scrolling_text_ap_parent_panelName = "panel2",
 		scrolling_text_ap_color = AUI.Color.ConvertHexToRGBA(DEFAULT_SCROLLING_TEXT_AP_COLOR, 1),
 		
 		--combat start
 		scrolling_text_show_combat_start = false,
 		scrolling_text_combat_start_size = 34,
-		scrolling_text_combat_start_font_art = "EsoUI/Common/Fonts/univers57.otf",
+		scrolling_text_combat_start_font_art = "EsoUI/Common/Fonts/univers57.slug",
 		scrolling_text_combat_start_parent_panelName = "panel2",
 		scrolling_text_combat_start_color = AUI.Color.ConvertHexToRGBA(DEFAULT_SCROLLING_TEXT_COMBAT_START_COLOR, 1),
 		
 		--combat end
 		scrolling_text_show_combat_end = false,
 		scrolling_text_combat_end_size = 34,
-		scrolling_text_combat_end_font_art = "EsoUI/Common/Fonts/univers57.otf",
+		scrolling_text_combat_end_font_art = "EsoUI/Common/Fonts/univers57.slug",
 		scrolling_text_combat_end_panelName = "panel2",
 		scrolling_text_combat_end_color = AUI.Color.ConvertHexToRGBA(DEFAULT_SCROLLING_TEXT_COMBAT_END_COLOR, 1),
 		
 		--procs
 		scrolling_text_show_instant_casts = true,
 		scrolling_text_instant_cast_size = 34,		
-		scrolling_text_instant_cast_font_art = "EsoUI/Common/Fonts/univers57.otf",
+		scrolling_text_instant_cast_font_art = "EsoUI/Common/Fonts/univers57.slug",
 		scrolling_text_instant_cast_parent_panelName = "panel2",
 		scrolling_text_instant_cast_color = AUI.Color.ConvertHexToRGBA(DEFAULT_SCROLLING_TEXT_INSTANT_CAST_COLOR, 1),
 				
 		--ultimate
 		scrolling_text_show_ultimate_ready = false,
 		scrolling_text_ultimate_ready_size = 34,
-		scrolling_text_ultimate_ready_font_art = "EsoUI/Common/Fonts/univers57.otf",
+		scrolling_text_ultimate_ready_font_art = "EsoUI/Common/Fonts/univers57.slug",
 		scrolling_text_ultimate_ready_parent_panelName = "panel2",
 		scrolling_text_ultimate_ready_color = AUI.Color.ConvertHexToRGBA(DEFAULT_SCROLLING_TEXT_ULTIMATE_READY_COLOR, 1),		
 							
 		--potion ready
 		scrolling_text_show_potion_ready = false,
 		scrolling_text_potion_ready_size = 34,		
-		scrolling_text_potion_ready_font_art = "EsoUI/Common/Fonts/univers57.otf",
+		scrolling_text_potion_ready_font_art = "EsoUI/Common/Fonts/univers57.slug",
 		scrolling_text_potion_ready_parent_panelName = "panel2",
 		scrolling_text_potion_ready_color = AUI.Color.ConvertHexToRGBA(DEFAULT_SCROLLING_TEXT_POTION_READY_COLOR, 1),		
 		
 		--health low
 		scrolling_text_show_health_low = true,
 		scrolling_text_health_low_size = 34,
-		scrolling_text_health_low_font_art = "EsoUI/Common/Fonts/univers57.otf",
+		scrolling_text_health_low_font_art = "EsoUI/Common/Fonts/univers57.slug",
 		scrolling_text_health_low_parent_panelName = "panel2",
 		scrolling_text_health_low_color = AUI.Color.ConvertHexToRGBA(DEFAULT_SCROLLING_TEXT_HEALTH_LOW_COLOR, 1),			
 		
 		--magicka low
 		scrolling_text_show_magicka_low = true,
 		scrolling_text_magicka_low_size = 34,
-		scrolling_text_magicka_low_font_art = "EsoUI/Common/Fonts/univers57.otf",
+		scrolling_text_magicka_low_font_art = "EsoUI/Common/Fonts/univers57.slug",
 		scrolling_text_magicka_low_parent_panelName = "panel2",
 		scrolling_text_magicka_low_color = AUI.Color.ConvertHexToRGBA(DEFAULT_SCROLLING_TEXT_MAGICKA_LOW_COLOR, 1),	
 		
 		--stamina low
 		scrolling_text_show_stamina_low = true,
 		scrolling_text_stamina_low_size = 34,
-		scrolling_text_stamina_low_font_art = "EsoUI/Common/Fonts/univers57.otf",
+		scrolling_text_stamina_low_font_art = "EsoUI/Common/Fonts/univers57.slug",
 		scrolling_text_stamina_low_parent_panelName = "panel2",
 		scrolling_text_stamina_low_color = AUI.Color.ConvertHexToRGBA(DEFAULT_SCROLLING_TEXT_STAMINA_LOW_COLOR, 1),					
 		
 		--health reg
 		scrolling_text_show_health_reg = false,
 		scrolling_text_health_reg_size = 24,
-		scrolling_text_health_reg_font_art = "EsoUI/Common/Fonts/univers57.otf",
+		scrolling_text_health_reg_font_art = "EsoUI/Common/Fonts/univers57.slug",
 		scrolling_text_health_reg_parent_panelName = "panel1",
 		scrolling_text_health_reg_color = AUI.Color.ConvertHexToRGBA(DEFAULT_SCROLLING_TEXT_HEALTH_REG_COLOR, 1),			
 		
 		--magicka reg
 		scrolling_text_show_magicka_reg = false,
 		scrolling_text_magicka_reg_size = 24,
-		scrolling_text_magicka_reg_font_art = "EsoUI/Common/Fonts/univers57.otf",
+		scrolling_text_magicka_reg_font_art = "EsoUI/Common/Fonts/univers57.slug",
 		scrolling_text_magicka_reg_parent_panelName = "panel1",
 		scrolling_text_magicka_reg_color = AUI.Color.ConvertHexToRGBA(DEFAULT_SCROLLING_TEXT_MAGICKA_REG_COLOR, 1),	
 		
 		--stamina reg
 		scrolling_text_show_stamina_reg = false,
 		scrolling_text_stamina_reg_size = 24,
-		scrolling_text_stamina_reg_font_art = "EsoUI/Common/Fonts/univers57.otf",
+		scrolling_text_stamina_reg_font_art = "EsoUI/Common/Fonts/univers57.slug",
 		scrolling_text_stamina_reg_parent_panelName = "panel1",
 		scrolling_text_stamina_reg_color = AUI.Color.ConvertHexToRGBA(DEFAULT_SCROLLING_TEXT_STAMINA_REG_COLOR, 1),				
 
 		--health dereg
 		scrolling_text_show_health_dereg = false,
 		scrolling_text_health_dereg_size = 24,
-		scrolling_text_health_dereg_font_art = "EsoUI/Common/Fonts/univers57.otf",
+		scrolling_text_health_dereg_font_art = "EsoUI/Common/Fonts/univers57.slug",
 		scrolling_text_health_dereg_parent_panelName = "panel3",
 		scrolling_text_health_dereg_color = AUI.Color.ConvertHexToRGBA(DEFAULT_SCROLLING_TEXT_HEALTH_DEREG_COLOR, 1),			
 		
 		--magicka dereg
 		scrolling_text_show_magicka_dereg = false,
 		scrolling_text_magicka_dereg_size = 24,
-		scrolling_text_magicka_dereg_font_art = "EsoUI/Common/Fonts/univers57.otf",
+		scrolling_text_magicka_dereg_font_art = "EsoUI/Common/Fonts/univers57.slug",
 		scrolling_text_magicka_dereg_parent_panelName = "panel3",
 		scrolling_text_magicka_dereg_color = AUI.Color.ConvertHexToRGBA(DEFAULT_SCROLLING_TEXT_MAGICKA_DEREG_COLOR, 1),	
 		
 		--stamina dereg
 		scrolling_text_show_stamina_dereg = false,
 		scrolling_text_stamina_dereg_size = 24,
-		scrolling_text_stamina_dereg_font_art = "EsoUI/Common/Fonts/univers57.otf",
+		scrolling_text_stamina_dereg_font_art = "EsoUI/Common/Fonts/univers57.slug",
 		scrolling_text_stamina_dereg_parent_panelName = "panel3",
 		scrolling_text_stamina_dereg_color = AUI.Color.ConvertHexToRGBA(DEFAULT_SCROLLING_TEXT_STAMINA_DEREG_COLOR, 1),						
 		

@@ -9,22 +9,22 @@ AUI_UNIT_FRAMES_MODE_ACCOUNT_NAME_TITLE = 4
 function AUI.Menu.GetFontTypeList()
 	local fontTypeList = 
 	{
-		[0] = {["EsoUI/Common/Fonts/univers55.otf"]							= "Univers 55"},
-		[1] = {["EsoUI/Common/Fonts/univers57.otf"]							= "Univers 57"},
-		[2] = {["EsoUI/Common/Fonts/univers67.otf"]							= "Univers 67"},
-		[3] = {["EsoUI/Common/Fonts/ProseAntiquePSMT.otf"]					= "ProseAntique"},
-		[4] = {["EsoUI/Common/Fonts/consola.ttf"]							= "Consolas"},
-		[5] = {["EsoUI/Common/Fonts/FTN57.otf"]								= "Futura Condensed"},
-		[6] = {["EsoUI/Common/Fonts/FTN87.otf"]								= "EsoUI/Common/Fonts/FTN87.otf"},
-		[7] = {["EsoUI/Common/Fonts/FTN47.otf"]								= "Futura Condensed Light"},
-		[8] = {["EsoUI/Common/Fonts/FTN47.otf"]								= "Skyrim Handwritten"},
-		[9] = {["EsoUI/Common/Fonts/trajanpro-regular.otf"]					= "Trajan Pro"},
-		[10] = {["AUI/fonts/Kingthings_Calligraphica_2.ttf"]				= "Calligraphica"},
-		[11] = {["AUI/fonts/Almendra-Bold.otf"]								= "Almendra"},
-		[12] = {["AUI/fonts/SansitaOne.ttf"]								= "Sansita One"},
-	    [13] = {["AUI/fonts/Bellota-Bold.otf"]								= "Bellota"},
-		[14] = {["esoui/common/fonts/eso_fwudc_70-m.ttf"]					= "ESO-FWUDC_70 M"},
-		[15] = {["esoui/common/fonts/eso_fwntlgudc70-db.ttf"]				= "ESO-FWNTLGUDC70 DB"}
+		[0] = {["EsoUI/Common/Fonts/univers55.slug"]							= "Univers 55"},
+		[1] = {["EsoUI/Common/Fonts/univers57.slug"]							= "Univers 57"},
+		[2] = {["EsoUI/Common/Fonts/univers67.slug"]							= "Univers 67"},
+		[3] = {["EsoUI/Common/Fonts/ProseAntiquePSMT.slug"]						= "ProseAntique"},
+		[4] = {["EsoUI/Common/Fonts/consola.slug"]								= "Consolas"},
+		[5] = {["EsoUI/Common/Fonts/FTN57.slug"]								= "Futura Condensed"},
+		[6] = {["EsoUI/Common/Fonts/FTN87.slug"]								= "FTN87"},
+		[7] = {["EsoUI/Common/Fonts/FTN47.slug"]								= "Futura Condensed Light"},
+		[8] = {["EsoUI/Common/Fonts/FTN47.slug"]								= "Skyrim Handwritten"},
+		[9] = {["EsoUI/Common/Fonts/trajanpro-regular.slug"]					= "Trajan Pro"},
+		[10] = {["AUI/fonts/Kingthings_Calligraphica_2.slug"]					= "Calligraphica"},
+		[11] = {["AUI/fonts/Almendra-Bold.slug"]								= "Almendra"},
+		[12] = {["AUI/fonts/SansitaOne.slug"]									= "Sansita One"},
+	    [13] = {["AUI/fonts/Bellota-Bold.slug"]									= "Bellota"},
+		[14] = {["esoui/common/fonts/eso_fwudc_70-m.slug"]						= "ESO-FWUDC_70 M"},
+		[15] = {["esoui/common/fonts/eso_fwntlgudc70-db.slug"]					= "ESO-FWNTLGUDC70 DB"}
 	}
 	
 	return fontTypeList
@@ -79,8 +79,8 @@ end
 function AUI.Menu.GetAlignmentList()
 	local list = 
 	{
-		[0] = {[AUI_VERTICAL] 				= AUI.L10n.GetString("vertical")},
-		[1] = {[AUI_VERTICAL_REVERSE] 		= AUI.L10n.GetString("vertical_reverse")},
+		[0] = {[AUI_VERTICAL] 					= AUI.L10n.GetString("vertical")},
+		[1] = {[AUI_VERTICAL_REVERSE] 			= AUI.L10n.GetString("vertical_reverse")},
 		[2] = {[AUI_HORIZONTAL] 				= AUI.L10n.GetString("horizontal")},
 		[3] = {[AUI_HORIZONTAL_REVERSE] 		= AUI.L10n.GetString("horizontal_reverse")}
 	}
@@ -92,7 +92,7 @@ function AUI.Menu.GetAnchorList()
 	local list = 
 	{
 		[0] = {[AUI_TEXT_ANCHOR_INSIDE] 				= AUI.L10n.GetString("inside")},
-		[1] = {[AUI_TEXT_ANCHOR_OUTSIDE] 			= AUI.L10n.GetString("outside")}
+		[1] = {[AUI_TEXT_ANCHOR_OUTSIDE] 				= AUI.L10n.GetString("outside")}
 	}
 	
 	return list

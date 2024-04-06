@@ -21,7 +21,7 @@ local function GetDefaultSettings()
 		},		
 		
 		player_show_buff_time = true,
-		player_buff_font_art = "EsoUI/Common/Fonts/univers67.otf",
+		player_buff_font_art = "EsoUI/Common/Fonts/univers67.slug",
 		player_buff_font_size = 11,
 			
 		player_buff_size = 40,
@@ -45,7 +45,7 @@ local function GetDefaultSettings()
 		},			
 		
 		player_show_debuff_time = true,
-		player_debuff_font_art = "EsoUI/Common/Fonts/univers67.otf",
+		player_debuff_font_art = "EsoUI/Common/Fonts/univers67.slug",
 		player_debuff_font_size = 11,		
 		
 		player_show_debuffs = true,			
@@ -66,7 +66,7 @@ local function GetDefaultSettings()
 		},
 
 		target_show_buff_time = true,
-		target_buff_font_art = "EsoUI/Common/Fonts/univers67.otf",
+		target_buff_font_art = "EsoUI/Common/Fonts/univers67.slug",
 		target_buff_font_size = 11,	
 
 		target_buff_size = 40,
@@ -88,7 +88,7 @@ local function GetDefaultSettings()
 		},
 
 		target_show_debuff_time = true,
-		target_debuff_font_art = "EsoUI/Common/Fonts/univers67.otf",
+		target_debuff_font_art = "EsoUI/Common/Fonts/univers67.slug",
 		target_debuff_font_size = 11,			
 		
 		target_show_debuffs = true,	

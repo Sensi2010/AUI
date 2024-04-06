@@ -114,7 +114,7 @@ local function GetFrameDefaultSettings(_type, _templateData)
 		data.show_max_value = _templateData["default_settings"].show_max_value == true or false
 		data.showPercent = _templateData["default_settings"].showPercent ~= false or false
 		data.use_thousand_seperator = _templateData["default_settings"].use_decimal ~= false or false
-		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.ttf"
+		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.slug"
 		data.font_size = _templateData["default_settings"].font_size or 14
 		data.font_style = _templateData["default_settings"].font_style or "outline"	
 		data.show_increase_regen_color = _templateData["default_settings"].show_increase_regen_color ~= false or false
@@ -136,7 +136,7 @@ local function GetFrameDefaultSettings(_type, _templateData)
 		data.show_max_value = _templateData["default_settings"].show_max_value == true or false
 		data.showPercent = _templateData["default_settings"].showPercent ~= false or false
 		data.use_thousand_seperator = _templateData["default_settings"].use_decimal ~= false or false
-		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.ttf"
+		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.slug"
 		data.font_size = _templateData["default_settings"].font_size or 14
 		data.font_style = _templateData["default_settings"].font_style or "outline"			
 	elseif _type == AUI_UNIT_FRAME_TYPE_PLAYER_STAMINA then
@@ -150,7 +150,7 @@ local function GetFrameDefaultSettings(_type, _templateData)
 		data.show_max_value = _templateData["default_settings"].show_max_value == true or false
 		data.showPercent = _templateData["default_settings"].showPercent ~= false or false
 		data.use_thousand_seperator = _templateData["default_settings"].use_decimal ~= false or false		
-		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.ttf"
+		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.slug"
 		data.font_size = _templateData["default_settings"].font_size or 14
 		data.font_style = _templateData["default_settings"].font_style or "outline"		
 	elseif _type == AUI_UNIT_FRAME_TYPE_PLAYER_MOUNT then
@@ -163,7 +163,7 @@ local function GetFrameDefaultSettings(_type, _templateData)
 		data.show_max_value = _templateData["default_settings"].show_max_value == true or false
 		data.showPercent = _templateData["default_settings"].showPercent ~= false or false
 		data.use_thousand_seperator = _templateData["default_settings"].use_decimal ~= false or false		
-		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.ttf"
+		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.slug"
 		data.font_size = _templateData["default_settings"].font_size or 12
 		data.font_style = _templateData["default_settings"].font_style or "outline"			
 	elseif _type == AUI_UNIT_FRAME_TYPE_PLAYER_WEREWOLF then
@@ -176,7 +176,7 @@ local function GetFrameDefaultSettings(_type, _templateData)
 		data.show_max_value = _templateData["default_settings"].show_max_value == true or false
 		data.showPercent = _templateData["default_settings"].showPercent ~= false or false
 		data.use_thousand_seperator = _templateData["default_settings"].use_decimal ~= false or false	
-		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.ttf"
+		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.slug"
 		data.font_size = _templateData["default_settings"].font_size or 12
 		data.font_style = _templateData["default_settings"].font_style or "outline"				
 	elseif _type == AUI_UNIT_FRAME_TYPE_PLAYER_SIEGE then
@@ -189,7 +189,7 @@ local function GetFrameDefaultSettings(_type, _templateData)
 		data.show_max_value = _templateData["default_settings"].show_max_value == true or false
 		data.showPercent = _templateData["default_settings"].showPercent ~= false or false
 		data.use_thousand_seperator = _templateData["default_settings"].use_decimal ~= false or false		
-		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.ttf"
+		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.slug"
 		data.font_size = _templateData["default_settings"].font_size or 15
 		data.font_style = _templateData["default_settings"].font_style or "outline"				
 	elseif _type == AUI_UNIT_FRAME_TYPE_PLAYER_SHIELD then
@@ -202,7 +202,7 @@ local function GetFrameDefaultSettings(_type, _templateData)
 		data.show_max_value = _templateData["default_settings"].show_max_value == true or false
 		data.showPercent = _templateData["default_settings"].showPercent ~= false or false
 		data.use_thousand_seperator = _templateData["default_settings"].use_decimal ~= false or false				
-		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.ttf"
+		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.slug"
 		data.font_size = _templateData["default_settings"].font_size or 10
 		data.font_style = _templateData["default_settings"].font_style or "outline"			
 	elseif _type == AUI_UNIT_FRAME_TYPE_PRIMARY_TARGET_HEALTH then
@@ -223,7 +223,7 @@ local function GetFrameDefaultSettings(_type, _templateData)
 		data.show_max_value = _templateData["default_settings"].show_max_value == true or false
 		data.showPercent = _templateData["default_settings"].show_percent ~= false or false
 		data.use_thousand_seperator = _templateData["default_settings"].use_decimal ~= false or false			
-		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.ttf"
+		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.slug"
 		data.font_size = _templateData["default_settings"].font_size or 15
 		data.font_style = _templateData["default_settings"].font_style or "outline"
 		data.show_account_name = _templateData["default_settings"].show_account_name or true
@@ -246,7 +246,7 @@ local function GetFrameDefaultSettings(_type, _templateData)
 		data.show_max_value = _templateData["default_settings"].show_max_value == true or false
 		data.showPercent = _templateData["default_settings"].showPercent ~= false or false
 		data.use_thousand_seperator = _templateData["default_settings"].use_decimal ~= false or false		
-		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.ttf"
+		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.slug"
 		data.font_size = _templateData["default_settings"].font_size or 15
 		data.font_style = _templateData["default_settings"].font_style or "outline"		
 	elseif _type == AUI_UNIT_FRAME_TYPE_SECUNDARY_TARGET_HEALTH then
@@ -267,7 +267,7 @@ local function GetFrameDefaultSettings(_type, _templateData)
 		data.show_max_value = _templateData["default_settings"].show_max_value == true or false
 		data.showPercent = _templateData["default_settings"].show_percent ~= false or false
 		data.use_thousand_seperator = _templateData["default_settings"].use_decimal ~= false or false		
-		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.ttf"
+		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.slug"
 		data.font_size = _templateData["default_settings"].font_size or 15
 		data.font_style = _templateData["default_settings"].font_style or "outline"
 		data.show_account_name = _templateData["default_settings"].show_account_name or true
@@ -290,7 +290,7 @@ local function GetFrameDefaultSettings(_type, _templateData)
 		data.show_max_value = _templateData["default_settings"].show_max_value == true or false
 		data.showPercent = _templateData["default_settings"].showPercent ~= false or false
 		data.use_thousand_seperator = _templateData["default_settings"].use_decimal ~= false or false	
-		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.ttf"
+		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.slug"
 		data.font_size = _templateData["default_settings"].font_size or 12
 		data.font_style = _templateData["default_settings"].font_style or "outline"		
 	elseif _type == AUI_UNIT_FRAME_TYPE_GROUP_HEALTH then
@@ -309,7 +309,7 @@ local function GetFrameDefaultSettings(_type, _templateData)
 		data.show_max_value = _templateData["default_settings"].show_max_value == true or false
 		data.showPercent = _templateData["default_settings"].showPercent ~= false or false
 		data.use_thousand_seperator = _templateData["default_settings"].use_decimal ~= false or false
-		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.ttf"
+		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.slug"
 		data.font_size = _templateData["default_settings"].font_size or 12
 		data.font_style = _templateData["default_settings"].font_style or "outline"	
 		data.show_account_name = _templateData["default_settings"].show_account_name or true
@@ -336,7 +336,7 @@ local function GetFrameDefaultSettings(_type, _templateData)
 		data.show_max_value = _templateData["default_settings"].show_max_value == true or false
 		data.showPercent = _templateData["default_settings"].showPercent ~= false or false
 		data.use_thousand_seperator = _templateData["default_settings"].use_decimal ~= false or false
-		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.ttf"
+		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.slug"
 		data.font_size = _templateData["default_settings"].font_size or 10
 		data.font_style = _templateData["default_settings"].font_style or "outline"	
 		data.show_increase_regen_color = _templateData["default_settings"].show_increase_regen_color ~= false or false
@@ -356,7 +356,7 @@ local function GetFrameDefaultSettings(_type, _templateData)
 		data.show_max_value = _templateData["default_settings"].show_max_value == true or false
 		data.showPercent = _templateData["default_settings"].showPercent ~= false or false
 		data.use_thousand_seperator = _templateData["default_settings"].use_decimal ~= false or false	
-		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.ttf"
+		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.slug"
 		data.font_size = _templateData["default_settings"].font_size or 10
 		data.font_style = _templateData["default_settings"].font_style or "outline"	
 	elseif _type == AUI_UNIT_FRAME_TYPE_RAID_HEALTH then
@@ -375,7 +375,7 @@ local function GetFrameDefaultSettings(_type, _templateData)
 		data.show_max_value = _templateData["default_settings"].show_max_value == true or false
 		data.showPercent = _templateData["default_settings"].showPercent ~= false or false
 		data.use_thousand_seperator = _templateData["default_settings"].use_decimal ~= false or false	
-		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.ttf"
+		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.slug"
 		data.font_size = _templateData["default_settings"].font_size or 10
 		data.font_style = _templateData["default_settings"].font_style or "outline"	
 		data.show_account_name = _templateData["default_settings"].show_account_name or true
@@ -399,7 +399,7 @@ local function GetFrameDefaultSettings(_type, _templateData)
 		data.show_max_value = _templateData["default_settings"].show_max_value == true or false
 		data.showPercent = _templateData["default_settings"].showPercent ~= false or false
 		data.use_thousand_seperator = _templateData["default_settings"].use_decimal ~= false or false
-		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.ttf"
+		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.slug"
 		data.font_size = _templateData["default_settings"].font_size or 10
 		data.font_style = _templateData["default_settings"].font_style or "outline"			
 	elseif _type == AUI_UNIT_FRAME_TYPE_RAID_COMPANION then
@@ -415,7 +415,7 @@ local function GetFrameDefaultSettings(_type, _templateData)
 		data.show_max_value = _templateData["default_settings"].show_max_value == true or false
 		data.showPercent = _templateData["default_settings"].showPercent ~= false or false
 		data.use_thousand_seperator = _templateData["default_settings"].use_decimal ~= false or false
-		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.ttf"
+		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.slug"
 		data.font_size = _templateData["default_settings"].font_size or 10
 		data.font_style = _templateData["default_settings"].font_style or "outline"	
 		data.show_increase_regen_color = _templateData["default_settings"].show_increase_regen_color ~= false or false
@@ -438,7 +438,7 @@ local function GetFrameDefaultSettings(_type, _templateData)
 		data.show_max_value = _templateData["default_settings"].show_max_value ~= false or false
 		data.showPercent = _templateData["default_settings"].showPercent ~= false or false
 		data.use_thousand_seperator = _templateData["default_settings"].use_decimal ~= false or false
-		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.ttf"
+		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.slug"
 		data.font_size = _templateData["default_settings"].font_size or 10
 		data.font_style = _templateData["default_settings"].font_style or "outline"	
 		data.row_distance = _templateData["default_settings"].row_distance or 8
@@ -460,7 +460,7 @@ local function GetFrameDefaultSettings(_type, _templateData)
 		data.show_max_value = _templateData["default_settings"].show_max_value ~= false or false
 		data.showPercent = _templateData["default_settings"].showPercent ~= false or false
 		data.use_thousand_seperator = _templateData["default_settings"].use_decimal ~= false or false
-		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.ttf"
+		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.slug"
 		data.font_size = _templateData["default_settings"].font_size or 10
 		data.font_style = _templateData["default_settings"].font_style or "outline"	
 	elseif _type == AUI_UNIT_FRAME_TYPE_COMPANION then
@@ -476,7 +476,7 @@ local function GetFrameDefaultSettings(_type, _templateData)
 		data.show_max_value = _templateData["default_settings"].show_max_value == true or false
 		data.showPercent = _templateData["default_settings"].showPercent ~= false or false
 		data.use_thousand_seperator = _templateData["default_settings"].use_decimal ~= false or false
-		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.ttf"
+		data.font_art = _templateData["default_settings"].font_art or "AUI/fonts/SansitaOne.slug"
 		data.font_size = _templateData["default_settings"].font_size or 10
 		data.font_style = _templateData["default_settings"].font_style or "outline"	
 		data.show_increase_regen_color = _templateData["default_settings"].show_increase_regen_color ~= false or false
@@ -506,7 +506,7 @@ local function GetDefaultSettings()
 		
 		boss_game_default_frame_show_text = true,
 		boss_game_default_frame_font_size = 16,
-		boss_game_default_frame_font_art = "AUI/fonts/SansitaOne.ttf",
+		boss_game_default_frame_font_art = "AUI/fonts/SansitaOne.slug",
 		boss_game_default_frame_use_thousand_seperator = true,
 	}
 	

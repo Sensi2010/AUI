@@ -38,7 +38,7 @@ local function GetDefaultSettings()
 		isExpandedConditions = false,
 		expandMode = 0,
 		font_size = 18,
-		font_art = "EsoUI/Common/Fonts/univers57.otf",
+		font_art = "EsoUI/Common/Fonts/univers57.slug",
 	}
 
 	return defaultSettings
