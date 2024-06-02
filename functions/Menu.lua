@@ -10,7 +10,7 @@ function AUI.Menu.GetFontTypeList()
 	local fontTypeList = 
 	{
 		[0] = {["EsoUI/Common/Fonts/univers55.slug"]							= "Univers 55"},
-		[1] = {["esoui/common/fonts/univers57.slug"]							= "Univers 57"},
+		[1] = {["Esoui/common/fonts/univers57.slug"]							= "Univers 57"},
 		[2] = {["EsoUI/Common/Fonts/univers67.slug"]							= "Univers 67"},
 		[3] = {["EsoUI/Common/Fonts/ProseAntiquePSMT.slug"]						= "ProseAntique"},
 		[4] = {["EsoUI/Common/Fonts/consola.slug"]								= "Consolas"},
