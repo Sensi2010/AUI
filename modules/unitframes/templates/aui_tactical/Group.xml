@@ -249,19 +249,19 @@
           <AnchorFill/>
           <Controls>
             <Label name="$(parent)_Value" text="%Value" tier="HIGH">
-              <Anchor point="LEFT" offsetX="5"/>
+              <Anchor point="LEFT" offsetX="5" offsetY="3"/>
             </Label>
             <Label name="$(parent)_MaxValue" text="/ %MaxValue" tier="HIGH">
               <Anchor point="LEFT" relativeTo="$(parent)_Value" relativePoint="RIGHT" offsetX="6"/>
             </Label>
             <Label name="$(parent)_Percent" text="%Percent%" tier="HIGH">
-              <Anchor point="RIGHT" offsetX="-7"/>
+              <Anchor point="RIGHT" offsetX="-7" offsetY="3"/>
             </Label>
             <Label name="$(parent)_Offline" tier="HIGH">
-              <Anchor point="RIGHT" offsetX="-7"/>
+              <Anchor point="RIGHT" offsetX="-7" offsetY="3"/>
             </Label>
             <Label name="$(parent)_DeadInfo" tier="HIGH">
-              <Anchor point="RIGHT" offsetX="-7"/>
+              <Anchor point="RIGHT" offsetX="-7" offsetY="3"/>
             </Label>
           </Controls>
         </Control>

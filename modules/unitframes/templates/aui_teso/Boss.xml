@@ -27,7 +27,7 @@
           </OnInitialized>
         </Label>
         <Control name="$(parent)_Text" resizeToFitDescendents="true">
-          <Anchor point="CENTER"/>
+          <Anchor point="CENTER" offsetY="2"/>
           <Controls>
             <Label name="$(parent)_Value" text="%Value" tier="HIGH">
               <Anchor point="LEFT"/>

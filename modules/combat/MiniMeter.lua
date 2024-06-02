@@ -232,7 +232,7 @@ function AUI.Combat.Minimeter.UpdateUI()
 	
 		left = left + ICON_SIZE
 	
-		AUI_Minimeter_Label_DPS_Out:SetAnchor(TOPLEFT, mMiniMeterControl, TOPLEFT, left, labelTop + 4)
+		AUI_Minimeter_Label_DPS_Out:SetAnchor(TOPLEFT, mMiniMeterControl, TOPLEFT, left, labelTop + 8)
 		
 		if AUI.Settings.Combat.minimeter_show_group_damage_out then
 			left = left + distance + 40
@@ -252,7 +252,7 @@ function AUI.Combat.Minimeter.UpdateUI()
 	
 		left = left + ICON_SIZE
 	
-		AUI_Minimeter_Label_Total_Damage_Out:SetAnchor(TOPLEFT, mMiniMeterControl, TOPLEFT, left, labelTop + 4)
+		AUI_Minimeter_Label_Total_Damage_Out:SetAnchor(TOPLEFT, mMiniMeterControl, TOPLEFT, left, labelTop + 8)
 	
 		left = left + distance
 	
@@ -268,7 +268,7 @@ function AUI.Combat.Minimeter.UpdateUI()
 	
 		left = left + ICON_SIZE
 	
-		AUI_Minimeter_Label_HPS_Out:SetAnchor(TOPLEFT, mMiniMeterControl, TOPLEFT, left + 2, labelTop + 4)	
+		AUI_Minimeter_Label_HPS_Out:SetAnchor(TOPLEFT, mMiniMeterControl, TOPLEFT, left + 2, labelTop + 8)	
 				
 		if AUI.Settings.Combat.minimeter_show_group_heal_out then
 			left = left + distance + 40
@@ -288,7 +288,7 @@ function AUI.Combat.Minimeter.UpdateUI()
 	
 		left = left + ICON_SIZE
 		
-		AUI_Minimeter_Label_Total_Heal_Out:SetAnchor(TOPLEFT, mMiniMeterControl, TOPLEFT, left + 1, labelTop + 4)
+		AUI_Minimeter_Label_Total_Heal_Out:SetAnchor(TOPLEFT, mMiniMeterControl, TOPLEFT, left + 1, labelTop + 8)
 		
 		left = left + distance
 	
@@ -304,7 +304,7 @@ function AUI.Combat.Minimeter.UpdateUI()
 	
 		left = left + ICON_SIZE
 	
-		AUI_Minimeter_Label_DPS_In:SetAnchor(TOPLEFT, mMiniMeterControl, TOPLEFT, left, labelTop + 4)	
+		AUI_Minimeter_Label_DPS_In:SetAnchor(TOPLEFT, mMiniMeterControl, TOPLEFT, left, labelTop + 8)	
 				
 		left = left + distance	
 				
@@ -320,7 +320,7 @@ function AUI.Combat.Minimeter.UpdateUI()
 	
 		left = left + ICON_SIZE
 	
-		AUI_Minimeter_Label_Total_Damage_In:SetAnchor(TOPLEFT, mMiniMeterControl, TOPLEFT, left, labelTop + 4)	
+		AUI_Minimeter_Label_Total_Damage_In:SetAnchor(TOPLEFT, mMiniMeterControl, TOPLEFT, left, labelTop + 8)	
 				
 		left = left + distance	
 				
@@ -336,7 +336,7 @@ function AUI.Combat.Minimeter.UpdateUI()
 	
 		left = left + ICON_SIZE
 	
-		AUI_Minimeter_Label_HPS_In:SetAnchor(TOPLEFT, mMiniMeterControl, TOPLEFT, left, labelTop + 4)	
+		AUI_Minimeter_Label_HPS_In:SetAnchor(TOPLEFT, mMiniMeterControl, TOPLEFT, left, labelTop + 8)	
 				
 		left = left + distance	
 				
@@ -352,7 +352,7 @@ function AUI.Combat.Minimeter.UpdateUI()
 	
 		left = left + ICON_SIZE
 	
-		AUI_Minimeter_Label_Total_Heal_In:SetAnchor(TOPLEFT, mMiniMeterControl, TOPLEFT, left, labelTop + 4)	
+		AUI_Minimeter_Label_Total_Heal_In:SetAnchor(TOPLEFT, mMiniMeterControl, TOPLEFT, left, labelTop + 8)	
 				
 		left = left + distance	
 				
@@ -368,7 +368,7 @@ function AUI.Combat.Minimeter.UpdateUI()
 	
 		left = left + ICON_SIZE
 	
-		AUI_Minimeter_Label_Time:SetAnchor(TOPLEFT, mMiniMeterControl, TOPLEFT, left, labelTop + 4)
+		AUI_Minimeter_Label_Time:SetAnchor(TOPLEFT, mMiniMeterControl, TOPLEFT, left, labelTop + 8)
 	
 		left = left + distance
 		

@@ -29,7 +29,7 @@ local function GetDefaultSettings()
 			point = 9,
 			relativePoint = 0,
 			offsetX = 0,
-			offsetY = 300
+			offsetY = 324
 		},
 		lock_window = false,
 		showBackground = false,
@@ -38,7 +38,7 @@ local function GetDefaultSettings()
 		isExpandedConditions = false,
 		expandMode = 0,
 		font_size = 18,
-		font_art = "EsoUI/Common/Fonts/univers57.slug",
+		font_art = "EsoUI/Common/Fonts/SansitaOne.slug",
 	}
 
 	return defaultSettings

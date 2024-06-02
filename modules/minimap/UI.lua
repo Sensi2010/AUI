@@ -120,11 +120,11 @@ local function SetPosition(point, rPoint, x, y)
 		
 	local locationNamePosY =  0
 		
-	if AUI.Settings.Minimap.preview_locationName and AUI.Settings.Minimap.preview_coords then
-		if AUI.Settings.Minimap.location_Position == "top" and AUI.Settings.Minimap.coords_Position == "top" then
-			locationNamePosY = AUI.Settings.Minimap.coords_FontSize + 5
-		elseif AUI.Settings.Minimap.location_Position == "bottom" and AUI.Settings.Minimap.coords_Position == "bottom" then
-			locationNamePosY = -AUI.Settings.Minimap.coords_FontSize - 5
+	if AUI.Settings.Minimap.preview_locationName then
+		if AUI.Settings.Minimap.location_Position == "top" then
+			locationNamePosY = AUI.Settings.Minimap.coords_FontSize + 8
+		elseif AUI.Settings.Minimap.location_Position == "bottom" then
+			locationNamePosY = AUI.Settings.Minimap.coords_FontSize - 4
 		end
 	end
 	

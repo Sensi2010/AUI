@@ -101,7 +101,7 @@ local function GetBuffData(_unitTag, _effectType)
 	local size = 32
 	local color = "#ffffff"
 	local distance = 12
-	local fontArt = "Univers 55"
+	local fontArt = "ESO-FWNTLGUDC70 DB"
 	local fontSize = 11
 	local showBuffTime = true
 	local textPosition = AUI_TEXT_ANCHOR_OUTSIDE

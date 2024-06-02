@@ -4,7 +4,7 @@
     <TopLevelControl name="AUI_Questtracker" DrawLayer="1" tier="LOW" level="0" clampedToScreen="true" mouseEnabled="true" hidden="true">
       <Controls>
         <Label name="AUI_Questtracker_LabelTime" hidden="true">
-          <Anchor point="TOP" relativePoint="TOP" offsetX="0" offsetY="12" />
+          <Anchor point="TOP" relativePoint="TOP" offsetX="0" offsetY="0" />
         </Label>
         <Label name="AUI_Questtracker_LabelQuestLogInfo" hidden="false">
           <Anchor point="TOPRIGHT" relativePoint="TOPRIGHT" offsetX="-30" offsetY="18" />

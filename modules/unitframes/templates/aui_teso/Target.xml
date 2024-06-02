@@ -62,7 +62,7 @@
           <Anchor point="TOP" relativeTo="$(parent)_TextArea" relativePoint="BOTTOM" />
         </Label>
         <Control name="$(parent)_Text" resizeToFitDescendents="true" tier="HIGH">
-          <Anchor point="CENTER"/>
+          <Anchor point="CENTER" offsetY="2"/>
           <Controls>
             <Label name="$(parent)_Value" text="%Value" tier="HIGH">
               <Anchor point="LEFT"/>

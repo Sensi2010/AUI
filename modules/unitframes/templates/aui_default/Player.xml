@@ -5,7 +5,7 @@
       <Anchor point="BOTTOM" relativeTo="GuiRoot" offsetY="-140" />
       <Controls>
         <Control name="$(parent)_Text" resizeToFitDescendents="true">
-          <Anchor point="CENTER"/>
+          <Anchor point="CENTER" offsetY="4"/>
           <Controls>
             <Label name="$(parent)_Value" text="%Value" tier="HIGH">
               <Anchor point="LEFT"/>
@@ -150,7 +150,7 @@
       <Anchor point="BOTTOM" relativeTo="GuiRoot" offsetX="-500" offsetY="-140" />
       <Controls>
         <Control name="$(parent)_Text" resizeToFitDescendents="true">
-          <Anchor point="CENTER"/>
+          <Anchor point="CENTER" offsetY="4"/>
           <Controls>
             <Label name="$(parent)_Value" text="%Value" tier="HIGH">
               <Anchor point="LEFT"/>
@@ -231,7 +231,7 @@
       <Anchor point="BOTTOM" relativeTo="GuiRoot" offsetX="500" offsetY="-140" />
       <Controls>
         <Control name="$(parent)_Text" resizeToFitDescendents="true">
-          <Anchor point="CENTER"/>
+          <Anchor point="CENTER" offsetY="4"/>
           <Controls>
             <Label name="$(parent)_Value" text="%Value" tier="HIGH">
               <Anchor point="LEFT"/>
@@ -312,7 +312,7 @@
       <Anchor point="BOTTOM" relativePoint="BOTTOM" offsetX="0" offsetY="-172" />
       <Controls>
         <Control name="$(parent)_Text" resizeToFitDescendents="true">
-          <Anchor point="CENTER"/>
+          <Anchor point="CENTER" offsetY="2"/>
           <Controls>
             <Label name="$(parent)_Value" text="%Value" tier="HIGH">
               <Anchor point="LEFT"/>
