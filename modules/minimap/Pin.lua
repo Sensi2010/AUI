@@ -12,7 +12,6 @@ local MAX_PIN_SCALE = 1
 local DEFAULT_PIN_SIZE = 18
 
 local g_mapPinManager = AUI.Minimap.GetPinManager()
-local gApiVersion = GetAPIVersion()
 
 AUI_Pin = ZO_MapPin:Subclass()
 
@@ -525,15 +524,7 @@ local ZONE_COMPLETION_TYPE_WITHOUT_PIN =
 local function AUI_MapPin_RefreshSuggestionPins()
 	g_mapPinManager:RemovePins("suggestion")
 
-	isZoneStoryTracked = false
-	
-	if gApiVersion >= 101042 then
-		isZoneStoryTracked = IsZoneStoryTracked()
-	else
-		isZoneStoryTracked = IsZoneStoryActivelyTracking()
-	end
-	
-	if isZoneStoryTracked then
+	if IsZoneStoryActivelyTracking() then
 		local zoneId, zoneCompletionType, activityId = GetTrackedZoneStoryActivityInfo()
 		if not ZONE_COMPLETION_TYPE_WITHOUT_PIN[zoneCompletionType] then
 			local normalizedX, normalizedY, normalizedRadius, isShownInCurrentMap = GetNormalizedPositionForZoneStoryActivityId(zoneId, zoneCompletionType, activityId)
