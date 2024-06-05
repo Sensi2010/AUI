@@ -3,7 +3,7 @@
     <Control name="AUI_BossBarOverlay" virtual="true">
       <Controls>
         <Label name="$(parent)_Text" wrapMode="TRUNCATE">
-          <Anchor point="CENTER" relativeTo="ZO_BossBarHealth"/>
+          <Anchor point="CENTER" relativeTo="ZO_BossBarHealth" offsetY="2"/>
         </Label>
       </Controls>
     </Control>

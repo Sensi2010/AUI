@@ -21,8 +21,8 @@ local function GetDefaultSettings()
 		},		
 		
 		player_show_buff_time = true,
-		player_buff_font_art = "esoui/common/fonts/eso_fwntlgudc70-db.slug",
-		player_buff_font_size = 11,
+		player_buff_font_art = "EsoUI/Common/Fonts/univers67.otf",
+		player_buff_font_size = 12,
 			
 		player_buff_size = 40,
 		player_buff_distance = 10,
@@ -45,8 +45,8 @@ local function GetDefaultSettings()
 		},			
 		
 		player_show_debuff_time = true,
-		player_debuff_font_art = "esoui/common/fonts/eso_fwntlgudc70-db.slug",
-		player_debuff_font_size = 11,		
+		player_debuff_font_art = "EsoUI/Common/Fonts/univers67.otf",
+		player_debuff_font_size = 12,		
 		
 		player_show_debuffs = true,			
 		player_debuff_size = 40,
@@ -66,8 +66,8 @@ local function GetDefaultSettings()
 		},
 
 		target_show_buff_time = true,
-		target_buff_font_art = "esoui/common/fonts/eso_fwntlgudc70-db.slug",
-		target_buff_font_size = 11,	
+		target_buff_font_art = "EsoUI/Common/Fonts/univers67.otf",
+		target_buff_font_size = 12,	
 
 		target_buff_size = 40,
 		target_buff_distance = 10,
@@ -88,8 +88,8 @@ local function GetDefaultSettings()
 		},
 
 		target_show_debuff_time = true,
-		target_debuff_font_art = "esoui/common/fonts/eso_fwntlgudc70-db.slug",
-		target_debuff_font_size = 11,			
+		target_debuff_font_art = "EsoUI/Common/Fonts/univers67.otf",
+		target_debuff_font_size = 12,			
 		
 		target_show_debuffs = true,	
 		player_allow_only_own_debuffs = true,
@@ -469,14 +469,14 @@ local function CreateOptions()
 					min = 2,
 					max = 30 ,
 					step = 1,
-					getFunc = function() return AUI.Settings.Buffs.player_buff_font_size end,
+					getFunc = function() return AUI.Settings.Buffs.player_debuff_font_size end,
 					setFunc = function(value) 
 						if value ~= nil then
-							AUI.Settings.Buffs.player_buff_font_size = value
+							AUI.Settings.Buffs.player_debuff_font_size = value
 							AUI.Buffs.RefreshAll()
 						end
 					end,
-					default = GetDefaultSettings().player_buff_font_size,
+					default = GetDefaultSettings().player_debuff_font_size,
 					width = "full",
 				},	
 				{

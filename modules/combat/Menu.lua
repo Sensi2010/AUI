@@ -60,7 +60,7 @@ local function GetDefaultSettings()
 		minimeter_show_combat_time = true,
 		minimeter_show_group_damage_out = true,
 		minimeter_show_group_heal_out = true,
-		minimeter_font_art = "esoui/common/fonts/eso_fwntlgudc70-db.slug",
+		minimeter_font_art = "esoui/common/fonts/univers67.otf",
 		minimeter_font_size = 16,
 		minimeter_font_style = "thick-outline",
 		
