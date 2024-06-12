@@ -228,20 +228,18 @@ local function CreateWindows()
 		},					
 	}
 	
-	if not AUI.Questtracker.IsEnabled() then
-		windows["focusedquesttracker"] = {
-			[1] = {
-				["originalControl"] = ZO_FocusedQuestTrackerPanel,
-				["text"] = "Focused Quest Tracker",
-				["height"] = 250,					
-			},
-			[2] = {
-				["originalControl"] = ZO_FocusedQuestTrackerPanel,
-				["text"] = "Focused Quest Tracker",
-				["height"] = 250,						
-			},	
-		}		
-	end
+
+	windows["focusedquesttracker"] = {
+		[1] = {
+			["originalControl"] = ZO_FocusedQuestTrackerPanel,
+			["text"] = "Focused Quest Tracker",					
+		},
+		[2] = {
+			["originalControl"] = ZO_FocusedQuestTrackerPanel,
+			["text"] = "Focused Quest Tracker",					
+		},	
+	}		
+
 	
 	if not AUI.UnitFrames.Group.IsEnabled() then
 		windows["groupframe"] = {
@@ -295,7 +293,9 @@ function AUI.FrameMover.SetWindowPosition(_windowData)
 	
 	if mainControl and originalControl and windowName then
 		local anchorToControlStr = AUI.Settings.FrameMover.anchors[windowName][g_currentInputMode].anchorTo
-		local anchorTo = GuiRoot
+		local _, _, relativeTo, _, _, _, _ = originalControl:GetAnchor()
+		
+		local anchorTo = relativeTo
 		
 		if anchorToControlStr and anchorToControlStr ~= "" then
 			anchorTo = _G[anchorToControlStr]
