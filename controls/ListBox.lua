@@ -20,6 +20,7 @@ function ListBox:New(_name, _parent, _useMouseEvents, _showBorder)
 	local manager = ZO_Object.New(self)
 
 	manager.itemList = {}
+	manager.rowList = {}	
 	manager.ListBoxControl = CreateControlFromVirtual(_name, _parent, "AUI_ListBox")
 	manager.name = _name
 	manager.parent = _parent
@@ -50,7 +51,9 @@ function ListBox:New(_name, _parent, _useMouseEvents, _showBorder)
 	manager.scrollContentHeight = 0
 	manager.showBorder = _showBorder
 	manager.allowManualDeselect = false
-		
+	manager.textWrap = false
+	manager.totalInnerHeight = 0
+	
     manager:Initialize()
 	
     return manager	
@@ -68,16 +71,16 @@ function ListBox:SetRowHeight(_self, _value)
 	self.rowHeight = _value
 end
 
+function ListBox:SetTextWrap(_self, _value)
+	self.textWrap = _value
+end
+
 function ListBox:EnableMouseHover()
 	self.showMouseHoverEffect = true
 end
 
 function ListBox:EnableMouseSelection()
 	self.showRowSelectedHoverEffect = true
-end
-
-function ListBox:GetTotalHeight()
-	return ((self.rowCount * self.rowHeight) + self.columnHeaderHeight + self.contentTop) + (self.padding * 2) + (self.rowDistance * self.rowCount) + (self.borderSize * 2) - self.firstRowTop
 end
 
 function ListBox:GetRowCount()
@@ -88,8 +91,8 @@ function ListBox:GetRowHeight()
 	return self.rowHeight
 end
 
-function ListBox:GetscrollContentHeight()
-	return self.scrollContentHeight
+function ListBox:GetScrollContentHeight()
+	return (self.totalInnerHeight + self.columnHeaderHeight + self.contentTop) + (self.padding * 2) + (self.rowDistance * self.rowCount) + (self.borderSize * 2) - self.firstRowTop + 1000
 end
 
 function ListBox:GetVisibleRowCount()
@@ -115,50 +118,130 @@ function ListBox:UpdateArrow(arrowTexture)
 	end
 end
 
-function ListBox:Initialize()
-	self.container = GetControl(self.ListBoxControl, "Container") 
-	self.scrollControl = GetControl(self.container, "Scroll") 	
-	self.scrollControl.data = {currentRowIndex  = 0}
-	self.contentControl = GetControl(self.scrollControl, "Content")
-	self.scrollBarControl = GetControl(self.ListBoxControl, "ScrollBar")
-	self.columnHeader = GetControl(self.container, "ColumnHeader")
-	self.borderControl = GetControl(self.ListBoxControl, "_Border")
-	self.columnLine = GetControl(self.columnHeader, "ColumnLine")
+function ListBox:ScrollToRow(_rowIndex)
+    -- Clamp the row index to be within valid range
+    if _rowIndex < 0 then
+        _rowIndex = 0
+    elseif _rowIndex > (self.rowCount - self.visibleRowCount) then
+        _rowIndex = self.rowCount - self.visibleRowCount
+    end
 
-	local scrollBarUp = GetControl(self.scrollBarControl, "Up")
-	local scrollBarDown = GetControl(self.scrollBarControl, "Down")
-	
-	scrollBarUp:SetHandler("OnClicked", 
-	function(_eventCode, _button, _ctrl, _alt, _shift)
-		self:Scroll(1)
-	end)
+    -- Calculate the vertical offset to scroll to the desired row
+    local offsetY = 0
+    for i = 0, _rowIndex - 1 do
+        local rowControl = self.rowList[i]
+        offsetY = offsetY + rowControl:GetHeight() + self.rowDistance
+    end
 
-	scrollBarDown:SetHandler("OnMouseDown", 
-	function(_eventCode, _button, _ctrl, _alt, _shift)
-		self:Scroll(-1)
-	end)				
+    -- Update the content control position to simulate scrolling
+    self.contentControl:ClearAnchors()
+    self.contentControl:SetAnchor(TOPLEFT, self.scrollControl, TOPLEFT, 0, -offsetY)
+
+    -- Update the current row index in the scroll control's data
+    self.scrollControl.data.currentRowIndex = _rowIndex
+end
+
+function ListBox:Scroll(_delta)
+    if self.visibleRowCount > 0 and self.visibleRowCount < self.rowCount then
+        -- Calculate the new row index based on the delta
+        local newRowIndex = self.scrollControl.data.currentRowIndex - _delta
+
+        -- Clamp the new row index to be within valid range
+        if newRowIndex < 0 then
+            newRowIndex = 0
+        elseif newRowIndex > (self.rowCount - self.visibleRowCount) then
+            newRowIndex = self.rowCount - self.visibleRowCount
+        end
+
+        -- Update the scroll bar position and scroll to the new row
+        self.scrollBarControl:SetValue(newRowIndex)
+        self:ScrollToRow(newRowIndex)
+    end
+end
+
+function ListBox:RefreshVisible()
+    local scrollMax = 0
+    local rowSpace = self.rowHeight + self.rowDistance
+
+    self.visibleHeight = self.height - self.columnHeaderHeight - self.contentTop - (self.borderSize * 2) - (self.padding * 2)
+    self.visibleRowCount = math.floor(self.visibleHeight / rowSpace)
+
+    if self.visibleRowCount > 0 and self.visibleRowCount < self.rowCount then
+        self.scrollBarControl:SetHidden(false)
+        scrollMax = self.rowCount - self.visibleRowCount
+    else
+        self.scrollBarControl:SetHidden(true)
+    end    
+
+    self.scrollBarControl:SetMinMax(0, scrollMax)
+    self.scrollBarControl:SetValue(0)
+end
+
+function ListBox:Refresh()
+	self:Clear()
+    self:Sort()
 	
-	self.scrollControl:SetHandler("OnMouseWheel", 
-	function(_control, _delta) 
-		self:Scroll(_delta) 
-	end)			
+	local rowIndex = 0
+	
+	local lastRowControl = nil
+	for rowKey, rowData in ipairs(self.itemList) do
+		local rowControl = self:CreateRow(rowIndex, rowData)		
+
+		rowControl:ClearAnchors()
+		if lastRowControl then
+			rowControl:SetAnchor(TOPLEFT, lastRowControl, BOTTOMLEFT, 0, self.rowDistance)
+		else					
+			rowControl:SetAnchor(TOPLEFT, self.contentControl, TOPLEFT, 0, 0)
+		end
 		
-	self.scrollBarControl:SetHandler("OnValueChanged", 
-	function(_eventCode, _value)
-		self:ScrollTowRow(AUI.Math.Round(_value, 0))
-	end)	
-	
-	self.ListBoxControl:SetParent(self.parent)
-	self.borderControl:SetEdgeTexture(nil, 2, 2, self.borderSize) 	
-	
-	if not self.showBorder then
-		self.borderControl:SetHidden(true)
-	else
-		self.borderControl:SetHidden(false)
-	end
-	
-	self.columnpool = ZO_ObjectPool:New(function(objectPool) return ZO_ObjectPool_CreateNamedControl(self.name .. "Column", "AUI_ListBox_Column", objectPool, self.columnHeader) end, ZO_ObjectPool_DefaultResetControl)
-	self.rowPool = ZO_ObjectPool:New(function(objectPool) return ZO_ObjectPool_CreateNamedControl(self.name .. "Row", "AUI_ListBox_Row", objectPool, self.contentControl) end, ZO_ObjectPool_DefaultResetControl)
+		lastRowControl = rowControl
+		
+		rowIndex = rowIndex + 1
+	end	
+
+	self:RefreshVisible()
+	self:ScrollToStart()	
+end
+
+function ListBox:Initialize()
+    self.container = GetControl(self.ListBoxControl, "Container")
+    self.scrollControl = GetControl(self.container, "Scroll")
+    self.scrollControl.data = { currentRowIndex = 0 }
+    self.contentControl = GetControl(self.scrollControl, "Content")
+    self.scrollBarControl = GetControl(self.ListBoxControl, "ScrollBar")
+    self.columnHeader = GetControl(self.container, "ColumnHeader")
+    self.borderControl = GetControl(self.ListBoxControl, "_Border")
+    self.columnLine = GetControl(self.columnHeader, "ColumnLine")
+
+    local scrollBarUp = GetControl(self.scrollBarControl, "Up")
+    local scrollBarDown = GetControl(self.scrollBarControl, "Down")
+
+    scrollBarUp:SetHandler("OnClicked",
+    function(_eventCode, _button, _ctrl, _alt, _shift)
+        self:Scroll(1)
+    end)
+
+    scrollBarDown:SetHandler("OnMouseDown",
+    function(_eventCode, _button, _ctrl, _alt, _shift)
+        self:Scroll(-1)
+    end)
+
+    self.scrollControl:SetHandler("OnMouseWheel",
+    function(_control, _delta)
+        self:Scroll(_delta)
+    end)
+
+    self.ListBoxControl:SetParent(self.parent)
+    self.borderControl:SetEdgeTexture(nil, 2, 2, self.borderSize)
+
+    if not self.showBorder then
+        self.borderControl:SetHidden(true)
+    else
+        self.borderControl:SetHidden(false)
+    end
+
+    self.columnpool = ZO_ObjectPool:New(function(objectPool) return ZO_ObjectPool_CreateNamedControl(self.name .. "Column", "AUI_ListBox_Column", objectPool, self.columnHeader) end, ZO_ObjectPool_DefaultResetControl)
+    self.rowPool = ZO_ObjectPool:New(function(objectPool) return ZO_ObjectPool_CreateNamedControl(self.name .. "Row", "AUI_ListBox_Row", objectPool, self.contentControl) end, ZO_ObjectPool_DefaultResetControl)
 end
 
 function ListBox:CreateColumn(columnKey, columnData)
@@ -261,7 +344,7 @@ function ListBox:CreateColumn(columnKey, columnData)
 		else
 			textContainer:SetDimensions(columnData.CurrentWidth, columnData.CurrentHeight)
 		end
-
+		
 		columnControl:SetHidden(false)				
 	end	
 end
@@ -269,26 +352,6 @@ end
 function ListBox:ScrollToStart()
 	self.contentControl:ClearAnchors()
 	self.contentControl:SetAnchor(TOPLEFT, self.scrollControl, TOPLEFT, 0, 0)		
-end
-
-function ListBox:ScrollTowRow(_rowIndex)
-	local lastRowIndex = (self.rowCount - self.visibleRowCount)
-	
-	if _rowIndex >= 0 and _rowIndex <= lastRowIndex then
-		self.scrollControl.data.currentRowIndex = _rowIndex
-		
-		local offsetY = self.scrollControl.data.currentRowIndex * (self.rowHeight + self.rowDistance)
-		self.contentControl:ClearAnchors()
-		self.contentControl:SetAnchor(TOPLEFT, self.scrollControl, TOPLEFT, 0, -offsetY)		
-	end
-end
-
-function ListBox:Scroll(_delta)
-	if self.visibleRowCount > 0 and self.visibleRowCount < self.rowCount then
-		local rowIndex = self.scrollControl.data.currentRowIndex - _delta
-
-		self.scrollBarControl:SetValue(rowIndex)
-	end
 end
 
 function ListBox:GetCalculatedItemWidth(width)
@@ -400,14 +463,13 @@ function ListBox:CreateCell(rowControl, cellData)
 		end
 	end		
 		
+	local width = 0
+	local height = 0	
+		
 	if cellControl and cellControl.inner then	
 		local columnData = self.columnList[cellKey]
 		local controlType = cellControl.inner:GetType()
-			
-		local newWidth = columnData.CurrentWidth		
-		local newHeight = 0
-		local newInnerWidth = columnData.CurrentWidth	
-		local newInnerHeight = 0	
+				
 		local opacity = 1
 	
 		local horizontalTextAlign = TEXT_ALIGN_LEFT
@@ -424,8 +486,17 @@ function ListBox:CreateCell(rowControl, cellData)
 		if cellData.Opacity then
 			opacity = cellData.Opacity
 		end		
-	
+
+		width = columnData.CurrentWidth
+		height = self.rowHeight	
+
 		if controlType == CT_LABEL then
+			if self.textWrap then
+				cellControl.inner:SetDimensions(width, 0)
+			else
+				cellControl.inner:SetDimensions(width, height)
+			end
+		
 			if cellData.Font then
 				cellControl.inner:SetFont(cellData.Font)
 			else
@@ -445,11 +516,14 @@ function ListBox:CreateCell(rowControl, cellData)
 				cellControl.inner:SetText(rowControl.rowKey .. ".")
 			else
 				cellControl.inner:SetText(cellData.Value)
+			end	
+			
+			local textHeight = cellControl.inner:GetTextHeight()			
+			if textHeight > height then			
+				height = textHeight
 			end
 			
-			cellControl.inner:SetWrapMode(TEXT_WRAP_MODE_ELLIPSIS) 
-			
-			newHeight = self.rowHeight		
+			cellControl:SetDimensions(width, height)
 		elseif controlType == CT_TEXTURE then
 			if cellData.ControlType == "icon" then
 				local textureControl = GetControl(cellControl.inner, "_Texture")
@@ -466,8 +540,31 @@ function ListBox:CreateCell(rowControl, cellData)
 				end
 			end
 
-			newHeight = self.rowHeight			
+			if cellData.TextureWidth then			
+				if cellData.TextureWidth == "Height" then
+					width = self.rowHeight
+				else
+					width = cellData.TextureWidth		
+				end
+			end
+			
+			if cellData.TextureHeight then			
+				if cellData.TextureHeight == "Height" then
+					height = newWidth
+				else
+					height = cellData.TextureHeight		
+				end
+			end		
+
+			cellControl:SetDimensions(width, height)
+			cellControl.inner:SetDimensions(width, height)			
 		elseif controlType == CT_BUTTON then
+			if self.textWrap then
+				cellControl.inner:SetDimensions(width, 0)
+			else
+				cellControl.inner:SetDimensions(width, height)
+			end		
+
 			if cellData.NormalTexture then
 				cellControl.inner:SetNormalTexture(cellData.NormalTexture)
 			end	
@@ -488,28 +585,14 @@ function ListBox:CreateCell(rowControl, cellData)
 				cellControl.inner:SetFont(AUI_ROW_FONT_DEFAULT)
 			end
 			
-			cellControl.inner:SetHorizontalAlignment(textAlign)
-
-			newHeight = self.rowHeight		
-		end			
-	
-		newInnerHeight = newHeight
+			local textHeight = cellControl.inner:GetTextHeight()
+			if textHeight > height then			
+				height = textHeight
+			end			
 			
-		if cellData.TextureWidth then			
-			if cellData.TextureWidth == "Height" then
-				newInnerWidth = newHeight
-			else
-				newInnerWidth = cellData.TextureWidth		
-			end
-		end
-		
-		if cellData.TextureHeight then			
-			if cellData.TextureHeight == "Height" then
-				newInnerHeight = newWidth
-			else
-				newInnerHeight = cellData.TextureHeight		
-			end
-		end	
+			cellControl.inner:SetHorizontalAlignment(textAlign)	
+			cellControl:SetDimensions(width, height)
+		end			
 		
 		local offsetX = 0
 		local offsetY = 0
@@ -523,8 +606,6 @@ function ListBox:CreateCell(rowControl, cellData)
 
 		cellControl.inner:ClearAnchors()
 		cellControl.inner:SetAnchor(LEFT, cellControl, LEFT, offsetX, offsetY)	
-		cellControl.inner:SetDimensions(newInnerWidth, newInnerHeight)
-		cellControl:SetDimensions(newWidth, self.rowHeight)
 		
 		cellControl:ClearAnchors()
 		if rowControl.lastCellControl then
@@ -585,12 +666,12 @@ function ListBox:CreateCell(rowControl, cellData)
 
 		rowControl.cellList[cellKey] = cellControl		
 		rowControl.lastCellControl = cellControl
-
-		self.currentCellsWidth = self.currentCellsWidth + newHeight
 	end	
+	
+	return height
 end
 
-function ListBox:CreateRow(itemData)
+function ListBox:CreateRow(rowIndex, rowData)
 	local rowControl, key = self.rowPool:AcquireObject()
 	rowControl.lastCellControl = nil
 	rowControl.rowKey = key
@@ -602,8 +683,16 @@ function ListBox:CreateRow(itemData)
 		rowControl.cellPool:ReleaseAllObjects()
 	end
 	
-	for _, cellData in ipairs(itemData) do
-		self:CreateCell(rowControl, cellData)
+	local rowHeight = self.rowHeight
+	
+	for _, cellData in ipairs(rowData) do
+		local cellHeight = self:CreateCell(rowControl, cellData)
+		
+		if self.textWrap and cellHeight > rowHeight	then
+			rowHeight = cellHeight
+		end
+		
+		self.totalInnerHeight = self.totalInnerHeight + rowHeight
 	end
 	
 	if self.useMouseEvents then
@@ -638,10 +727,11 @@ function ListBox:CreateRow(itemData)
 	end
 		
 	rowControl:SetParent(self.contentControl)
-	rowControl:SetDimensions(self.scrollControlWidth, self.rowHeight)
+	rowControl:SetDimensions(self.scrollControlWidth, rowHeight)
 	rowControl:SetHidden(false)	
 	
 	self.activeRows[key] = rowControl
+	self.rowList[rowIndex] = rowControl
 	
 	self.rowCount = self.rowCount + 1
 	
@@ -764,46 +854,6 @@ function ListBox:SetDeselectedRowCallback(_self, _callback)
 	self.deselectedRowCallback = _callback
 end
 
-function ListBox:RefreshVisible()
-	local scrollMax = 0
-	local rowSpace = self.rowHeight + self.rowDistance
-
-	self.visibleHeight = self.height - self.columnHeaderHeight - self.contentTop - (self.borderSize * 2) - (self.padding * 2)
-	self.visibleRowCount = AUI.Math.Round(self.visibleHeight / rowSpace)
-
-	if self.visibleRowCount > 0 and self.visibleRowCount < self.rowCount then
-		self.scrollBarControl:SetHidden(false)
-		scrollMax = self.rowCount - (self.visibleHeight / rowSpace)
-	else
-		self.scrollBarControl:SetHidden(true)
-	end	
-		
-	self.scrollBarControl:SetMinMax(0, scrollMax)
-	self.scrollBarControl:SetValue(0)	
-end
-
-function ListBox:Refresh()
-	self:Clear()
-    self:Sort()
-	
-	local lastRowControl = nil
-	for rowKey, rowData in ipairs(self.itemList) do
-		local rowControl = self:CreateRow(rowData)		
-
-		rowControl:ClearAnchors()
-		if lastRowControl then
-			rowControl:SetAnchor(TOPLEFT, lastRowControl, BOTTOMLEFT, 0, self.rowDistance)
-		else					
-			rowControl:SetAnchor(TOPLEFT, self.contentControl, TOPLEFT, 0, 0)
-		end
-		
-		lastRowControl = rowControl
-	end	
-
-	self:RefreshVisible()
-	self:ScrollToStart()	
-end
-
 function ListBox:GetSelectedRowControl(_self)
 	if self.selectedRowControl then
 		return self.selectedRowControl
@@ -843,6 +893,7 @@ function AUI.CreateListBox(_name, _parent, _useMouseEvents, _showBorder)
 	listBoxClass.ListBoxControl.SetDimensions = function(...) listBoxClass:SetDimensions(...) end
 	listBoxClass.ListBoxControl.SetColumnText = function(...) listBoxClass:SetColumnText(...) end
 	listBoxClass.ListBoxControl.SetRowHeight = function(...) listBoxClass:SetRowHeight(...) end
+	listBoxClass.ListBoxControl.SetTextWrap = function(...) listBoxClass:SetTextWrap(...) end	
 	listBoxClass.ListBoxControl.SetRowMouseDoubleClickCallback = function(...) listBoxClass:SetRowMouseDoubleClickCallback(...) end
 	listBoxClass.ListBoxControl.SetRowMouseUpCallback = function(...) listBoxClass:SetRowMouseUpCallback(...) end
 	listBoxClass.ListBoxControl.SetSelectedRowCallback = function(...) listBoxClass:SetSelectedRowCallback(...) end
@@ -850,11 +901,10 @@ function AUI.CreateListBox(_name, _parent, _useMouseEvents, _showBorder)
 	listBoxClass.ListBoxControl.GetSelectedRowControl = function(...) return listBoxClass:GetSelectedRowControl(...) end
 	listBoxClass.ListBoxControl.EnableMouseHover = function(...) return listBoxClass:EnableMouseHover(...) end
 	listBoxClass.ListBoxControl.EnableMouseSelection = function(...) return listBoxClass:EnableMouseSelection(...) end
-	listBoxClass.ListBoxControl.GetscrollContentHeight = function(...) return listBoxClass:GetscrollContentHeight(...) end	
+	listBoxClass.ListBoxControl.GetScrollContentHeight = function(...) return listBoxClass:GetScrollContentHeight(...) end	
 	listBoxClass.ListBoxControl.GetVisibleRowCount = function(...) return listBoxClass:GetVisibleRowCount(...) end
 	listBoxClass.ListBoxControl.GetRowHeight = function(...) return listBoxClass:GetRowHeight(...) end
 	listBoxClass.ListBoxControl.GetRowCount = function(...) return listBoxClass:GetRowCount(...) end
-	listBoxClass.ListBoxControl.GetTotalHeight = function(...) return listBoxClass:GetTotalHeight(...) end
 	listBoxClass.ListBoxControl.SelectRowByIndex = function(...) return listBoxClass:SelectRowByIndex(...) end
 	listBoxClass.ListBoxControl.AllowManualDeselect = function(...) return listBoxClass:AllowManualDeselect(...) end
 

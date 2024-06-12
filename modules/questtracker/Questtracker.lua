@@ -45,47 +45,6 @@ local function AUI_Questtracker_OnMouseUp(_eventCode, _button, _ctrl, _alt, _shi
 	end
 end
 
-local function AddQuestName(_sortId, _questName, _color, _questIcon, _questTypeIcon, _textureWidth, _textureHeight, _opacity)
-	local fontSize = AUI.Settings.Questtracker.font_size / 1.1
-	
-	local questData =
-	{
-		[1] = 
-		{
-			["ControlType"] = "texture",
-			["TextureFile"] = _questIcon,
-			["SortType"] = "number",
-			["SortValue"] = _sortId,
-			["OffsetX"] = 12,
-			["OffsetY"] = 2,
-			["TextureWidth"] = fontSize + 1,		
-			["TextureHeight"] = fontSize + 1,			
-		}, 
-		[2] = 
-		{
-			["ControlType"] = "label",
-			["Value"] = "      " .. _questName,
-			["SortValue"] = _questName,
-			["SortType"] = "string",
-			["OffsetX"] = -4,
-			["HorizontalTextAlign"] = TEXT_ALIGN_LEFT,
-			["Color"] = AUI.Color.ConvertHexToRGBA(_color, 1),
-			["Font"] = (AUI.Settings.Questtracker.font_art .. "|" .. fontSize  .. "|" .. "outline")	,				
-			["Opacity"] = _opacity,
-		},	
-		[3] = 
-		{
-			["ControlType"] = "texture",
-			["TextureFile"] = _questTypeIcon,
-			["OffsetX"] = 10,
-			["TextureWidth"] = _textureWidth,
-			["TextureHeight"] = _textureHeight,
-		},				
-	}
-	
-	table.insert(g_itemList, questData)	
-end
-
 local function AddCategory(_catId, _sortId, _catName, _color, _icon)
 	local catData = nil
 	
@@ -98,8 +57,8 @@ local function AddCategory(_catId, _sortId, _catName, _color, _icon)
 				["TextureFile"] = _icon,
 				["SortType"] = "number",				
 				["SortValue"] = _sortId,
-				["OffsetX"] = -5,
-				["OffsetY"] = 3,
+				["OffsetX"] = 0,
+				["OffsetY"] = -4,
 				["TextureWidth"] = 28,
 				["TextureHeight"] = 28,				
 			}, 
@@ -125,6 +84,48 @@ local function AddCategory(_catId, _sortId, _catName, _color, _icon)
 	return false
 end
 
+local function AddQuestName(_sortId, _questName, _color, _questIcon, _questTypeIcon, _textureWidth, _textureHeight, _opacity)
+	local fontSize = AUI.Settings.Questtracker.font_size / 1.1
+	
+	local questData =
+	{
+		[1] = 
+		{
+			["ControlType"] = "texture",
+			["TextureFile"] = _questIcon,
+			["SortType"] = "number",
+			["SortValue"] = _sortId,
+			["OffsetX"] = 12,
+			["OffsetY"] = -4,
+			["TextureWidth"] = fontSize + 1,		
+			["TextureHeight"] = fontSize + 1,			
+		}, 
+		[2] = 
+		{
+			["ControlType"] = "label",
+			["Value"] = "      " .. _questName,
+			["SortValue"] = _questName,
+			["SortType"] = "string",
+			["OffsetX"] = -4,
+			["OffsetY"] = -4,
+			["HorizontalTextAlign"] = TEXT_ALIGN_LEFT,
+			["Color"] = AUI.Color.ConvertHexToRGBA(_color, 1),
+			["Font"] = (AUI.Settings.Questtracker.font_art .. "|" .. fontSize  .. "|" .. "outline")	,				
+			["Opacity"] = _opacity,
+		},	
+		[3] = 
+		{
+			["ControlType"] = "texture",
+			["TextureFile"] = _questTypeIcon,
+			["OffsetX"] = 10,
+			["TextureWidth"] = _textureWidth,
+			["TextureHeight"] = _textureHeight,
+		},				
+	}
+	
+	table.insert(g_itemList, questData)	
+end
+
 local function AddQuestCondition(_sortId, _text, _color)
 	local conditionData =
 	{
@@ -143,7 +144,7 @@ local function AddQuestCondition(_sortId, _text, _color)
 			["Color"] = AUI.Color.ConvertHexToRGBA(_color, 1),
 			["Font"] = (AUI.Settings.Questtracker.font_art .. "|" .. AUI.Settings.Questtracker.font_size / 1.25  .. "|" .. "outline"),
 			["OffsetX"] = 30,
-			["OffsetY"] = -3,
+			["OffsetY"] = 0,
 		},	
 		[3] = 
 		{
@@ -390,19 +391,15 @@ end
 function AUI.Questtracker.SetDimensions()
 	local height = 0
 
-	local listBoxInnerHeight = AUI_Questtracker_ListBox:GetTotalHeight()
+	local listBoxInnerHeight = AUI_Questtracker_ListBox:GetScrollContentHeight()
 	if listBoxInnerHeight > AUI_QUESTTRACKER_MIN_HEIGHT then
-		if listBoxInnerHeight > AUI.Settings.Questtracker.maxHeight then
-			height = AUI.Settings.Questtracker.maxHeight
-		else
-			height = listBoxInnerHeight
-		end
+		height = AUI.Settings.Questtracker.height
 	else
 		height = AUI_QUESTTRACKER_MIN_HEIGHT
 	end
 
-	AUI_Questtracker_ListBox:SetDimensions(AUI.Settings.Questtracker.width, height - 2)
-	AUI_Questtracker_Border:SetDimensions(AUI.Settings.Questtracker.width, height - 2)
+	AUI_Questtracker_ListBox:SetDimensions(AUI.Settings.Questtracker.width, height)
+	AUI_Questtracker_Border:SetDimensions(AUI.Settings.Questtracker.width, height)
 	AUI_Questtracker:SetDimensions(AUI.Settings.Questtracker.width, AUI_QUESTTRACKER_MAX_HEIGHT_MIN_SIZE)
 	
 	ZO_FocusedQuestTrackerPanel:ClearAnchors()
@@ -463,22 +460,17 @@ function AUI.Questtracker.UpdateUI()
 	end	
 
 	if AUI.Settings.Questtracker.expandMode == 0 then
-		AUI_Questtracker_ExpandConditionsButton:SetTextureCoords(0, 1, 0, 1)
-		
+		AUI_Questtracker_ExpandConditionsButton:SetTextureCoords(0, 1, 0, 1)		
 		AUI_Questtracker_ExpandConditionsButton:SetNormalTexture("AUI/images/other/arrow_expand_top.dds")
 		AUI_Questtracker_ExpandConditionsButton:SetPressedTexture("AUI/images/other/arrow_expand_top_pressed.dds")
 		AUI_Questtracker_ExpandConditionsButton:SetMouseOverTexture("AUI/images/other/arrow_expand_top_hover.dds")			
 	elseif AUI.Settings.Questtracker.expandMode == 1 then
 		AUI_Questtracker_ExpandConditionsButton:SetTextureCoords(0, 1, 0, 1)
-		
-		
 		AUI_Questtracker_ExpandConditionsButton:SetNormalTexture("AUI/images/other/arrow_expand_left.dds")
 		AUI_Questtracker_ExpandConditionsButton:SetPressedTexture("AUI/images/other/arrow_expand_left_hover.dds")
-		AUI_Questtracker_ExpandConditionsButton:SetMouseOverTexture("AUI/images/other/arrow_expand_left_pressed.dds")			
-		
+		AUI_Questtracker_ExpandConditionsButton:SetMouseOverTexture("AUI/images/other/arrow_expand_left_pressed.dds")					
 	else
-		AUI_Questtracker_ExpandConditionsButton:SetTextureCoords(0, 1, 1, 0)
-		
+		AUI_Questtracker_ExpandConditionsButton:SetTextureCoords(0, 1, 1, 0)		
 		AUI_Questtracker_ExpandConditionsButton:SetNormalTexture("AUI/images/other/arrow_expand_top.dds")
 		AUI_Questtracker_ExpandConditionsButton:SetPressedTexture("AUI/images/other/arrow_expand_top_pressed.dds")
 		AUI_Questtracker_ExpandConditionsButton:SetMouseOverTexture("AUI/images/other/arrow_expand_top_hover.dds")			
@@ -526,7 +518,8 @@ function AUI.Questtracker.Load()
 	AUI_Questtracker_ListBox:EnableMouseHover()
 	AUI_Questtracker_ListBox:SetSortKey(1)
 	AUI_Questtracker_ListBox:SetSortOrder(ZO_SORT_ORDER_UP)
-
+	AUI_Questtracker_ListBox:SetTextWrap(true)
+	
 	zo_callLater(function() 
 		FOCUSED_QUEST_TRACKER_FRAGMENT:SetHiddenForReason("AUI_HIDE_PERMANENT", true)
 		FOCUSED_QUEST_TRACKER_FRAGMENT:Hide()

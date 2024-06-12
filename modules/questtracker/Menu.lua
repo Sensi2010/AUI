@@ -23,7 +23,7 @@ local function GetDefaultSettings()
 	{
 		enable = true,
 		width = 278,
-		maxHeight= 698, 
+		height= 698, 
 		anchor = 
 		{
 			point = 9,
@@ -124,19 +124,19 @@ local function CreateOptions()
 		},	
 		{
 			type = "slider",
-			name = AUI.L10n.GetString("max_height"),
-			tooltip = AUI.L10n.GetString("max_height_tooltip"),
+			name = AUI.L10n.GetString("height"),
+			tooltip = AUI.L10n.GetString("height_tooltip"),
 			min = AUI_QUESTTRACKER_MAX_HEIGHT_MIN_SIZE,
 			max = AUI_QUESTTRACKER_MAX_HEIGHT_MAX_SIZE,
 			step = 1,
-			getFunc = function() return AUI.Settings.Questtracker.maxHeight end,
+			getFunc = function() return AUI.Settings.Questtracker.height end,
 			setFunc = function(value) 
 				if value ~= nil then
-					AUI.Settings.Questtracker.maxHeight = value
+					AUI.Settings.Questtracker.height = value
 					AUI.Questtracker.UpdateUI()
 				end
 			end,
-			default = GetDefaultSettings().maxHeight,
+			default = GetDefaultSettings().height,
 			width = "half",			
 		},	
 		{

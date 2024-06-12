@@ -11,6 +11,8 @@ local g_inputModeList =
 	["gamepad"] = 2,
 }
 
+local gApiVersion = GetAPIVersion()
+
 local function OnFrameMouseDown(_button, _ctrl, _alt, _shift, _frame)
 	if _button == 1 then
 		_frame:SetMovable(true)
@@ -24,6 +26,14 @@ local function OnFrameMouseUp(_button, _ctrl, _alt, _shift, _frame)
 	AUI.Settings.FrameMover.anchors[_frame.windowName][g_currentInputMode].anchorTo = nil
 
 	AUI.FrameMover.SetWindowPosition(_frame.windowData)	
+		
+	if gApiVersion <= 100034 then
+		if _frame:GetName() == "AUI_FrameMover_Window_skillbar1" then
+			if AUI.Actionbar.IsEnabled() then
+				AUI.Actionbar.UpdateUI() 
+			end			
+		end		
+	end
 end	
 
 local function CreateWindows()
@@ -102,7 +112,7 @@ local function CreateWindows()
 					["point"] = LEFT,
 					["anchorTo"] = "ZO_ActionBar1",
 					["relativePoint"] = RIGHT,
-					["offsetX"] = 60,
+					["offsetX"] = 20,
 					["offsetY"] = 0,
 				},				
 			},
@@ -113,7 +123,7 @@ local function CreateWindows()
 					["point"] = LEFT,
 					["anchorTo"] = "ZO_ActionBar1",
 					["relativePoint"] = RIGHT,
-					["offsetX"] = 200,
+					["offsetX"] = 60,
 					["offsetY"] = 0,
 				},					
 			},					
@@ -228,18 +238,20 @@ local function CreateWindows()
 		},					
 	}
 	
-
-	windows["focusedquesttracker"] = {
-		[1] = {
-			["originalControl"] = ZO_FocusedQuestTrackerPanel,
-			["text"] = "Focused Quest Tracker",					
-		},
-		[2] = {
-			["originalControl"] = ZO_FocusedQuestTrackerPanel,
-			["text"] = "Focused Quest Tracker",					
-		},	
-	}		
-
+	if not AUI.Questtracker.IsEnabled() then
+		windows["focusedquesttracker"] = {
+			[1] = {
+				["originalControl"] = ZO_EndDunHUDTracker,
+				["text"] = "Dungeon HUD & Quest Tracker",
+				["height"] = 250,					
+			},
+			[2] = {
+				["originalControl"] = ZO_EndDunHUDTracker,
+				["text"] = "Dungeon HUD & Quest Tracker",
+				["height"] = 250,						
+			},	
+		}		
+	end
 	
 	if not AUI.UnitFrames.Group.IsEnabled() then
 		windows["groupframe"] = {
@@ -284,6 +296,12 @@ function AUI.FrameMover.SetToDefaultPosition()
 	end
 
 	AUI.FrameMover.UpdateAll()
+	
+	if gApiVersion <= 100034 then
+		if AUI.Actionbar.IsEnabled() then
+			AUI.Actionbar.UpdateUI() 
+		end				
+	end	
 end
 
 function AUI.FrameMover.SetWindowPosition(_windowData)
@@ -293,9 +311,7 @@ function AUI.FrameMover.SetWindowPosition(_windowData)
 	
 	if mainControl and originalControl and windowName then
 		local anchorToControlStr = AUI.Settings.FrameMover.anchors[windowName][g_currentInputMode].anchorTo
-		local _, _, relativeTo, _, _, _, _ = originalControl:GetAnchor()
-		
-		local anchorTo = relativeTo
+		local anchorTo = GuiRoot
 		
 		if anchorToControlStr and anchorToControlStr ~= "" then
 			anchorTo = _G[anchorToControlStr]
@@ -371,7 +387,7 @@ function AUI.FrameMover.UpdateAll()
 		if windowData then
 			if not windowData.default_anchor then
 				windowData.default_anchor = {}						
-				_, windowData.default_anchor.point, _, windowData.default_anchor.relativePoint, windowData.default_anchor.offsetX, windowData.default_anchor.offsetY = windowData.originalControl:GetAnchor()
+				_, windowData.default_anchor.point, GuiRoot, windowData.default_anchor.relativePoint, windowData.default_anchor.offsetX, windowData.default_anchor.offsetY = windowData.originalControl:GetAnchor()
 			end				
 		
 			if not AUI.Settings.FrameMover.anchors[windowName][g_currentInputMode] then
