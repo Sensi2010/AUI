@@ -24,7 +24,8 @@ function AUI.Menu.GetFontTypeList()
 		[12] = {["AUI/fonts/SansitaOne.slug"]									= "Sansita One"},
 	    [13] = {["AUI/fonts/Bellota-Bold.slug"]									= "Bellota"},
 		[14] = {["esoui/common/fonts/eso_fwudc_70-m.slug"]						= "ESO-FWUDC_70 M"},
-		[15] = {["esoui/common/fonts/eso_fwntlgudc70-db.slug"]					= "ESO-FWNTLGUDC70 DB"}
+		[15] = {["esoui/common/fonts/eso_fwntlgudc70-db.slug"]					= "ESO-FWNTLGUDC70 DB"},
+		[16] = {["esoui/common/fonts/myingheiprc-w5.slug"]						= "Myingheiprc-w5"}		
 	}
 	
 	return fontTypeList

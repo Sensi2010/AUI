@@ -51,7 +51,6 @@ function ListBox:New(_name, _parent, _useMouseEvents, _showBorder)
 	manager.scrollContentHeight = 0
 	manager.showBorder = _showBorder
 	manager.allowManualDeselect = false
-	manager.textWrap = false
 	manager.totalInnerHeight = 0
 	
     manager:Initialize()
@@ -69,10 +68,6 @@ end
 
 function ListBox:SetRowHeight(_self, _value)
 	self.rowHeight = _value
-end
-
-function ListBox:SetTextWrap(_self, _value)
-	self.textWrap = _value
 end
 
 function ListBox:EnableMouseHover()
@@ -491,7 +486,7 @@ function ListBox:CreateCell(rowControl, cellData)
 		height = self.rowHeight	
 
 		if controlType == CT_LABEL then
-			if self.textWrap then
+			if cellData.TextWrap then
 				cellControl.inner:SetDimensions(width, 0)
 			else
 				cellControl.inner:SetDimensions(width, height)
@@ -559,7 +554,7 @@ function ListBox:CreateCell(rowControl, cellData)
 			cellControl:SetDimensions(width, height)
 			cellControl.inner:SetDimensions(width, height)			
 		elseif controlType == CT_BUTTON then
-			if self.textWrap then
+			if cellData.TextWrap then
 				cellControl.inner:SetDimensions(width, 0)
 			else
 				cellControl.inner:SetDimensions(width, height)
@@ -583,12 +578,7 @@ function ListBox:CreateCell(rowControl, cellData)
 				cellControl.inner:SetFont(cellData.Font)
 			else
 				cellControl.inner:SetFont(AUI_ROW_FONT_DEFAULT)
-			end
-			
-			local textHeight = cellControl.inner:GetTextHeight()
-			if textHeight > height then			
-				height = textHeight
-			end			
+			end		
 			
 			cellControl.inner:SetHorizontalAlignment(textAlign)	
 			cellControl:SetDimensions(width, height)
@@ -688,7 +678,7 @@ function ListBox:CreateRow(rowIndex, rowData)
 	for _, cellData in ipairs(rowData) do
 		local cellHeight = self:CreateCell(rowControl, cellData)
 		
-		if self.textWrap and cellHeight > rowHeight	then
+		if cellData.TextWrap and cellHeight > rowHeight	then
 			rowHeight = cellHeight
 		end
 		
@@ -893,7 +883,6 @@ function AUI.CreateListBox(_name, _parent, _useMouseEvents, _showBorder)
 	listBoxClass.ListBoxControl.SetDimensions = function(...) listBoxClass:SetDimensions(...) end
 	listBoxClass.ListBoxControl.SetColumnText = function(...) listBoxClass:SetColumnText(...) end
 	listBoxClass.ListBoxControl.SetRowHeight = function(...) listBoxClass:SetRowHeight(...) end
-	listBoxClass.ListBoxControl.SetTextWrap = function(...) listBoxClass:SetTextWrap(...) end	
 	listBoxClass.ListBoxControl.SetRowMouseDoubleClickCallback = function(...) listBoxClass:SetRowMouseDoubleClickCallback(...) end
 	listBoxClass.ListBoxControl.SetRowMouseUpCallback = function(...) listBoxClass:SetRowMouseUpCallback(...) end
 	listBoxClass.ListBoxControl.SetSelectedRowCallback = function(...) listBoxClass:SetSelectedRowCallback(...) end

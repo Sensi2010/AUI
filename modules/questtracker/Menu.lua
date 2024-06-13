@@ -38,7 +38,7 @@ local function GetDefaultSettings()
 		isExpandedConditions = false,
 		expandMode = 0,
 		font_size = 18,
-		font_art = "EsoUI/Common/Fonts/SansitaOne.slug",
+		font_art = "esoui/common/fonts/myingheiprc-w5.slug",
 	}
 
 	return defaultSettings

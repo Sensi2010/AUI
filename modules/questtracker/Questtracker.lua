@@ -47,6 +47,7 @@ end
 
 local function AddCategory(_catId, _sortId, _catName, _color, _icon)
 	local catData = nil
+	local fontSize = AUI.Settings.Questtracker.font_size * 1.1
 	
 	if not g_catList[_catId] then
 		catData =
@@ -58,9 +59,9 @@ local function AddCategory(_catId, _sortId, _catName, _color, _icon)
 				["SortType"] = "number",				
 				["SortValue"] = _sortId,
 				["OffsetX"] = 0,
-				["OffsetY"] = -4,
-				["TextureWidth"] = 28,
-				["TextureHeight"] = 28,				
+				["OffsetY"] = -1,
+				["TextureWidth"] = fontSize + 8,
+				["TextureHeight"] = fontSize + 8,				
 			}, 
 			[2] = 
 			{
@@ -68,7 +69,7 @@ local function AddCategory(_catId, _sortId, _catName, _color, _icon)
 				["Value"] = _catName,
 				["HorizontalTextAlign"] = TEXT_ALIGN_LEFT,
 				["Color"] = AUI.Color.ConvertHexToRGBA(_color, 1),				
-				["Font"] = (AUI.Settings.Questtracker.font_art .. "|" .. AUI.Settings.Questtracker.font_size .. "|" .. "thick-outline")
+				["Font"] = (AUI.Settings.Questtracker.font_art .. "|" .. fontSize .. "|" .. "thick-outline")
 			},	
 			[3] = 
 			{
@@ -95,10 +96,10 @@ local function AddQuestName(_sortId, _questName, _color, _questIcon, _questTypeI
 			["TextureFile"] = _questIcon,
 			["SortType"] = "number",
 			["SortValue"] = _sortId,
-			["OffsetX"] = 12,
-			["OffsetY"] = -4,
-			["TextureWidth"] = fontSize + 1,		
-			["TextureHeight"] = fontSize + 1,			
+			["OffsetX"] = 20,
+			["OffsetY"] = 10,
+			["TextureWidth"] = fontSize - 2,		
+			["TextureHeight"] = fontSize - 2,					
 		}, 
 		[2] = 
 		{
@@ -106,8 +107,8 @@ local function AddQuestName(_sortId, _questName, _color, _questIcon, _questTypeI
 			["Value"] = "      " .. _questName,
 			["SortValue"] = _questName,
 			["SortType"] = "string",
-			["OffsetX"] = -4,
-			["OffsetY"] = -4,
+			["OffsetX"] = -2,
+			["OffsetY"] = 8,
 			["HorizontalTextAlign"] = TEXT_ALIGN_LEFT,
 			["Color"] = AUI.Color.ConvertHexToRGBA(_color, 1),
 			["Font"] = (AUI.Settings.Questtracker.font_art .. "|" .. fontSize  .. "|" .. "outline")	,				
@@ -120,6 +121,7 @@ local function AddQuestName(_sortId, _questName, _color, _questIcon, _questTypeI
 			["OffsetX"] = 10,
 			["TextureWidth"] = _textureWidth,
 			["TextureHeight"] = _textureHeight,
+			["OffsetY"] = 4,
 		},				
 	}
 	
@@ -144,7 +146,8 @@ local function AddQuestCondition(_sortId, _text, _color)
 			["Color"] = AUI.Color.ConvertHexToRGBA(_color, 1),
 			["Font"] = (AUI.Settings.Questtracker.font_art .. "|" .. AUI.Settings.Questtracker.font_size / 1.25  .. "|" .. "outline"),
 			["OffsetX"] = 30,
-			["OffsetY"] = 0,
+			["OffsetY"] = 10,
+			["TextWrap"] = true,	
 		},	
 		[3] = 
 		{
@@ -440,7 +443,7 @@ function AUI.Questtracker.UpdateUI()
 		},		
 	}		
 	
-	AUI_Questtracker_ListBox:SetRowHeight(AUI.Settings.Questtracker.font_size + 2)				
+	AUI_Questtracker_ListBox:SetRowHeight(AUI.Settings.Questtracker.font_size + 4)				
 	AUI_Questtracker_ListBox:SetColumnList(columnList)	
 	
 	if AUI.Settings.Questtracker.showBackground then
@@ -518,7 +521,6 @@ function AUI.Questtracker.Load()
 	AUI_Questtracker_ListBox:EnableMouseHover()
 	AUI_Questtracker_ListBox:SetSortKey(1)
 	AUI_Questtracker_ListBox:SetSortOrder(ZO_SORT_ORDER_UP)
-	AUI_Questtracker_ListBox:SetTextWrap(true)
 	
 	zo_callLater(function() 
 		FOCUSED_QUEST_TRACKER_FRAGMENT:SetHiddenForReason("AUI_HIDE_PERMANENT", true)
