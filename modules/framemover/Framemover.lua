@@ -241,14 +241,28 @@ local function CreateWindows()
 	if not AUI.Questtracker.IsEnabled() then
 		windows["focusedquesttracker"] = {
 			[1] = {
-				["originalControl"] = ZO_EndDunHUDTracker,
-				["text"] = "Dungeon HUD & Quest Tracker",
-				["height"] = 250,					
+				["originalControl"] = ZO_FocusedQuestTrackerPanel,
+				["text"] = "Focused Quest Tracker",
+				["height"] = 250,	
+				["default_anchor"] = {
+					["point"] = TOPRIGHT,
+					["anchorTo"] = "ZO_EndDunHUDTracker",
+					["relativePoint"] = BOTTOMRIGHT,
+					["offsetX"] = 0,
+					["offsetY"] = 0,
+				},				
 			},
 			[2] = {
-				["originalControl"] = ZO_EndDunHUDTracker,
-				["text"] = "Dungeon HUD & Quest Tracker",
-				["height"] = 250,						
+				["originalControl"] = ZO_FocusedQuestTrackerPanel,
+				["text"] = "Focused Quest Tracker",
+				["height"] = 250,
+				["default_anchor"] = {
+					["point"] = TOPRIGHT,
+					["anchorTo"] = "ZO_EndDunHUDTracker",
+					["relativePoint"] = BOTTOMRIGHT,
+					["offsetX"] = 0,
+					["offsetY"] = 0,
+				},				
 			},	
 		}		
 	end
@@ -315,7 +329,7 @@ function AUI.FrameMover.SetWindowPosition(_windowData)
 		
 		if anchorToControlStr and anchorToControlStr ~= "" then
 			anchorTo = _G[anchorToControlStr]
-		end
+		end	
 		
 		mainControl:ClearAnchors()
 		mainControl:SetAnchor(AUI.Settings.FrameMover.anchors[windowName][g_currentInputMode].point, anchorTo, AUI.Settings.FrameMover.anchors[windowName][g_currentInputMode].relativePoint, AUI.Settings.FrameMover.anchors[windowName][g_currentInputMode].offsetX, AUI.Settings.FrameMover.anchors[windowName][g_currentInputMode].offsetY)	
@@ -448,5 +462,4 @@ function AUI.FrameMover.Load()
 
 	AUI.FrameMover.LoadSettings()
 	g_windows = CreateWindows()	
-	AUI.FrameMover.UpdateAll()	
 end 
