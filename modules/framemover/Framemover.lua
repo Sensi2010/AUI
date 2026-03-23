@@ -54,16 +54,6 @@ local function CreateWindows()
                 ["text"] = "Compass",
             },
         },
-        ["skillbar"] = {
-            [1] = {
-                ["originalControl"] = ZO_ActionBar1,
-                ["text"] = "Action Bar",
-            },
-            [2] = {
-                ["originalControl"] = ZO_ActionBar1,
-                ["text"] = "Action Bar",
-            },
-        },
         ["alert_text"] = {
             [1] = {
                 ["originalControl"] = ZO_AlertTextNotification,
@@ -221,6 +211,19 @@ local function CreateWindows()
             },
         },
     }
+
+    if AUI.Actionbar.IsEnabled() then
+        windows["skillbar"] = {
+            [1] = {
+                ["originalControl"] = ZO_ActionBar1,
+                ["text"] = "Action Bar",
+            },
+            [2] = {
+                ["originalControl"] = ZO_ActionBar1,
+                ["text"] = "Action Bar",
+            },
+        }
+    end
  
     if not AUI.Questtracker.IsEnabled() then
         windows["focusedquesttracker"] = {
