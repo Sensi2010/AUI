@@ -426,6 +426,10 @@ local function OnGamepadPreferredModeChanged(eventCode, gamepadPreferred)
 	
 	if AUI.FrameMover.IsEnabled() then
 		AUI.FrameMover.OnGamepadPreferredModeChanged(gamepadPreferred)
+	end
+
+	if AUI.Buffs.IsEnabled() then
+		AUI.Buffs.OnGamepadPreferredModeChanged(gamepadPreferred)
 	end		
 end
 

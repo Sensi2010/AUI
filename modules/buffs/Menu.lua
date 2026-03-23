@@ -25,6 +25,7 @@ local function GetDefaultSettings()
 		player_buff_font_size = 12,
 			
 		player_buff_size = 40,
+		gamepad_player_buff_size = 60,
 		player_buff_distance = 10,
 
 		player_show_permanent_buffs = false,
@@ -41,7 +42,7 @@ local function GetDefaultSettings()
 			point = BOTTOM,
 			relativePoint = BOTTOM,
 			offsetX = -180,
-			offsetY = -94,
+			offsetY = -87,
 		},			
 		
 		player_show_debuff_time = true,
@@ -50,6 +51,7 @@ local function GetDefaultSettings()
 		
 		player_show_debuffs = true,			
 		player_debuff_size = 40,
+		gamepad_player_debuff_size = 40,
 		player_debuff_distance = 10,		
 		player_debuff_sorting = AUI_SORTING_LARGE_TO_SMALL,
 		player_debuff_alignment = AUI_HORIZONTAL,
@@ -59,10 +61,10 @@ local function GetDefaultSettings()
 		
 		target_buff_position = 
 		{
-			point = TOP,
-			relativePoint = TOP,
-			offsetX = -146,
-			offsetY = 79,
+			point = 3,
+			relativePoint = 3,
+			offsetX = 1132,
+			offsetY = 84,
 		},
 
 		target_show_buff_time = true,
@@ -70,6 +72,7 @@ local function GetDefaultSettings()
 		target_buff_font_size = 12,	
 
 		target_buff_size = 40,
+		gamepad_target_buff_size = 60,
 		target_buff_distance = 10,
 		target_show_permanent_buffs = false,
 		target_show_time_limit_buffs = true,
@@ -81,10 +84,10 @@ local function GetDefaultSettings()
 			
 		target_debuff_position = 
 		{
-			point = TOP,
-			relativePoint = TOP,
-			offsetX = -146,
-			offsetY = 232,
+			point = 3,
+			relativePoint = 3,
+			offsetX = 1135,
+			offsetY = 174,
 		},
 
 		target_show_debuff_time = true,
@@ -94,6 +97,7 @@ local function GetDefaultSettings()
 		target_show_debuffs = true,	
 		player_allow_only_own_debuffs = true,
 		target_debuff_size = 40,
+		gamepad_target_debuff_size = 60,
 		target_debuff_distance = 10,
 		target_debuff_sorting = AUI_SORTING_LARGE_TO_SMALL,	
 		target_debuff_alignment = AUI_HORIZONTAL,	
@@ -238,12 +242,22 @@ local function CreateOptions()
 					name =  AUI.L10n.GetString("size"),
 					tooltip =  AUI.L10n.GetString("size_tooltip"),
 					min = 24,
-					max = 48,
+					max = 80,
 					step = 1,
-					getFunc = function() return AUI.Settings.Buffs.player_buff_size end,
+					getFunc = function()
+						if IsInGamepadPreferredMode() then
+							return AUI.Settings.Buffs.gamepad_player_buff_size
+						else
+							return AUI.Settings.Buffs.player_buff_size
+						end
+					end,
 					setFunc = function(value)
 						if value ~= nil then
-							AUI.Settings.Buffs.player_buff_size = value
+							if IsInGamepadPreferredMode() then
+								AUI.Settings.Buffs.gamepad_player_buff_size = value
+							else
+								AUI.Settings.Buffs.player_buff_size = value
+							end
 							AUI.Buffs.RefreshAll()
 						end
 					end,
@@ -377,12 +391,13 @@ local function CreateOptions()
 					name = AUI.L10n.GetString("size"),
 					tooltip = AUI.L10n.GetString("size_tooltip"),
 					min = 24,
-					max = 48,
+					max = 80,
 					step = 1,
 					getFunc = function() return AUI.Settings.Buffs.player_debuff_size end,
 					setFunc = function(value)
 						if value ~= nil then
 							AUI.Settings.Buffs.player_debuff_size = value
+							AUI.Settings.Buffs.gamepad_player_debuff_size = value
 							AUI.Buffs.RefreshAll()
 						end
 					end,
@@ -537,12 +552,22 @@ local function CreateOptions()
 					name = AUI.L10n.GetString("size"),
 					tooltip = AUI.L10n.GetString("size_tooltip"),
 					min = 24,
-					max = 48,
+					max = 80,
 					step = 1,
-					getFunc = function() return AUI.Settings.Buffs.target_buff_size end,
-					setFunc = function(value) 
+					getFunc = function()
+						if IsInGamepadPreferredMode() then
+							return AUI.Settings.Buffs.gamepad_target_buff_size
+						else
+							return AUI.Settings.Buffs.target_buff_size
+						end
+					end,
+					setFunc = function(value)
 						if value ~= nil then
-							AUI.Settings.Buffs.target_buff_size = value
+							if IsInGamepadPreferredMode() then
+								AUI.Settings.Buffs.gamepad_target_buff_size = value
+							else
+								AUI.Settings.Buffs.target_buff_size = value
+							end
 							AUI.Buffs.RefreshAll()
 						end
 					end,
@@ -690,12 +715,22 @@ local function CreateOptions()
 					name = AUI.L10n.GetString("size"),
 					tooltip = AUI.L10n.GetString("size_tooltip"),
 					min = 24,
-					max = 48,
+					max = 80,
 					step = 1,
-					getFunc = function() return AUI.Settings.Buffs.target_debuff_size end,
-					setFunc = function(value) 
+					getFunc = function()
+						if IsInGamepadPreferredMode() then
+							return AUI.Settings.Buffs.gamepad_target_debuff_size
+						else
+							return AUI.Settings.Buffs.target_debuff_size
+						end
+					end,
+					setFunc = function(value)
 						if value ~= nil then
-							AUI.Settings.Buffs.target_debuff_size = value
+							if IsInGamepadPreferredMode() then
+								AUI.Settings.Buffs.gamepad_target_debuff_size = value
+							else
+								AUI.Settings.Buffs.target_debuff_size = value
+							end
 							AUI.Buffs.RefreshAll()
 						end
 					end,

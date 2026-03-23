@@ -83,7 +83,7 @@ function AUI.UnitFrames.Target.OnChanged()
 
 	if ZO_TargetUnitFramereticleover then
 		ZO_TargetUnitFramereticleover:SetHidden(true)
-	end	
+	end
 
 	if DoesUnitExist(AUI_TARGET_UNIT_TAG) or AUI.UnitFrames.IsPreviewShow() then	
 		ShowTargetFrame()

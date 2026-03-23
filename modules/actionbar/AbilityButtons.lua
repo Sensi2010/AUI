@@ -119,7 +119,7 @@ local function AddActionBarButtonPreviewCooldown(_slotId, _category)
 	UpdateSlot(_slotId)
 	if gAbilitySlotDataArray[_category][_slotId] and gAbilitySlotDataArray[_category][_slotId].use then	
 		local duration = GetAbilityDuration(gAbilitySlotDataArray[_category][_slotId].abilityId)
-		if duration > 0 then
+		if duration and duration > 0 then
 			gAbilitySlotDataArray[_category][_slotId].duration = duration 
 			gAbilitySlotDataArray[_category][_slotId].endTime = (GetFrameTimeMilliseconds() + duration) / 1000	
 			gAbilitySlotDataArray[_category][_slotId].isActive = true	

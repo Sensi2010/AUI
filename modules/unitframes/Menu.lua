@@ -6109,7 +6109,7 @@ local function GetTargetSettingTable(_frameType)
 			default = GetDefaultSettingFromType(_frameType).width,
 			width = "half",
 			disabled = function() return IsSettingDisabled(_frameType, "width") end,
-		},	
+		},
 		{
 			type = "slider",
 			name = AUI.L10n.GetString("height"),
@@ -6417,7 +6417,7 @@ local function GetTargetSettingTable(_frameType)
 			disabled = function() return IsSettingDisabled(_frameType, "show_decrease_power_effect") end,	
 		}				
 	}
-	
+
 	return optionTable
 end
 
