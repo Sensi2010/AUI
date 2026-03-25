@@ -9,8 +9,6 @@
 ## Author: |c87ddf2Sensi|r
 ## Version: 1.00
 ## IsLibrary: true
-## DependsOn:
-## OptionalDependsOn:
 ## SavedVariables: AUI_Fights
 
 AUI_FightData.lua

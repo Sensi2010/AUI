@@ -9,7 +9,7 @@
 ## APIVersion: 101049
 ## Version: 3.992
 ## SavedVariables: AUI_Main AUI_Minimap AUI_Quests AUI_Attributes AUI_Templates AUI_Combat AUI_Buffs AUI_Skillbar AUI_Control_Mover
-## DependsOn: AUI_FightData LibAddonMenu-2.0>=31
+## DependsOn: AUI_FightData LibAddonMenu-2.0>=41
 
 Constants.lua
 Templates.xml
