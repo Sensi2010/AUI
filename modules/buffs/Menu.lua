@@ -61,9 +61,9 @@ local function GetDefaultSettings()
 		
 		target_buff_position = 
 		{
-			point = 3,
-			relativePoint = 3,
-			offsetX = 1132,
+			point = TOP,
+			relativePoint = TOP,
+			offsetX = -130,
 			offsetY = 84,
 		},
 
@@ -84,10 +84,10 @@ local function GetDefaultSettings()
 			
 		target_debuff_position = 
 		{
-			point = 3,
-			relativePoint = 3,
-			offsetX = 1135,
-			offsetY = 174,
+			point = TOP,
+			relativePoint = TOP,
+			offsetX = -130,
+			offsetY = 220,
 		},
 
 		target_show_debuff_time = true,

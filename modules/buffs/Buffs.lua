@@ -36,6 +36,24 @@ local function OnMouseUp(_eventCode, _button, _ctrl, _alt, _shift, _control, _po
 	end
 end
 
+local function SyncTargetDebuffPositionX()
+	local targetBuffPosition = AUI.Settings.Buffs.target_buff_position
+	local targetDebuffPosition = AUI.Settings.Buffs.target_debuff_position
+
+	if not targetBuffPosition or not targetDebuffPosition then
+		return
+	end
+
+	targetDebuffPosition.point = targetBuffPosition.point
+	targetDebuffPosition.relativePoint = targetBuffPosition.relativePoint
+	targetDebuffPosition.offsetX = targetBuffPosition.offsetX
+
+	if g_isInit and AUI_Buff_Target_Debuffs then
+		AUI_Buff_Target_Debuffs:ClearAnchors()
+		AUI_Buff_Target_Debuffs:SetAnchor(targetDebuffPosition.point, GUIROOT, targetDebuffPosition.relativePoint, targetDebuffPosition.offsetX, targetDebuffPosition.offsetY)
+	end
+end
+
 local function GetBuffControls(_unitTag, _effectType)	
 	if not buffDataList[_unitTag] then
 		buffDataList[_unitTag] = {}
@@ -684,6 +702,10 @@ function AUI.Buffs.SetToDefaultPosition(_defaultSettings)
 		return
 	end
 
+	_defaultSettings.target_debuff_position.point = _defaultSettings.target_buff_position.point
+	_defaultSettings.target_debuff_position.relativePoint = _defaultSettings.target_buff_position.relativePoint
+	_defaultSettings.target_debuff_position.offsetX = _defaultSettings.target_buff_position.offsetX
+
 	AUI_Buff_Player_Buffs:ClearAnchors()
 	AUI_Buff_Player_Buffs:SetAnchor(_defaultSettings.player_buff_position.point, GuiRoot, _defaultSettings.player_buff_position.relativePoint, _defaultSettings.player_buff_position.offsetX, _defaultSettings.player_buff_position.offsetY)
 	_, AUI.Settings.Buffs.player_buff_position.point, _, AUI.Settings.Buffs.player_buff_position.relativePoint, AUI.Settings.Buffs.player_buff_position.offsetX, AUI.Settings.Buffs.player_buff_position.offsetY = AUI_Buff_Player_Buffs:GetAnchor()
@@ -695,6 +717,7 @@ function AUI.Buffs.SetToDefaultPosition(_defaultSettings)
 	AUI_Buff_Target_Buffs:ClearAnchors()
 	AUI_Buff_Target_Buffs:SetAnchor(_defaultSettings.target_buff_position.point, GuiRoot, _defaultSettings.target_buff_position.relativePoint, _defaultSettings.target_buff_position.offsetX, _defaultSettings.target_buff_position.offsetY)
 	_, AUI.Settings.Buffs.target_buff_position.point, _, AUI.Settings.Buffs.target_buff_position.relativePoint, AUI.Settings.Buffs.target_buff_position.offsetX, AUI.Settings.Buffs.target_buff_position.offsetY = AUI_Buff_Target_Buffs:GetAnchor()
+	SyncTargetDebuffPositionX()
 		
 	AUI_Buff_Target_Debuffs:ClearAnchors()
 	AUI_Buff_Target_Debuffs:SetAnchor(_defaultSettings.target_debuff_position.point, GuiRoot, _defaultSettings.target_debuff_position.relativePoint, _defaultSettings.target_debuff_position.offsetX, _defaultSettings.target_debuff_position.offsetY)
@@ -774,12 +797,19 @@ function AUI.Buffs.OnPlayerActivated()
 		AUI_Buff_Target_Buffs:ClearAnchors()
 		AUI_Buff_Target_Buffs:SetAnchor(AUI.Settings.Buffs.target_buff_position.point, GUIROOT, AUI.Settings.Buffs.target_buff_position.relativePoint, AUI.Settings.Buffs.target_buff_position.offsetX, AUI.Settings.Buffs.target_buff_position.offsetY)
 		AUI_Buff_Target_Buffs:SetHandler("OnMouseDown", function(_eventCode, _button, _ctrl, _alt, _shift) OnMouseDown(_eventCode, _button, _ctrl, _alt, _shift, AUI_Buff_Target_Buffs) end)
-		AUI_Buff_Target_Buffs:SetHandler("OnMouseUp", function(_eventCode, _button, _ctrl, _alt, _shift) OnMouseUp(_eventCode, _button, _ctrl, _alt, _shift, AUI_Buff_Target_Buffs, AUI.Settings.Buffs.target_buff_position) end)
+		AUI_Buff_Target_Buffs:SetHandler("OnMouseUp", function(_eventCode, _button, _ctrl, _alt, _shift)
+			OnMouseUp(_eventCode, _button, _ctrl, _alt, _shift, AUI_Buff_Target_Buffs, AUI.Settings.Buffs.target_buff_position)
+			SyncTargetDebuffPositionX()
+		end)
+		SyncTargetDebuffPositionX()
 
 		AUI_Buff_Target_Debuffs:ClearAnchors()
 		AUI_Buff_Target_Debuffs:SetAnchor(AUI.Settings.Buffs.target_debuff_position.point, GUIROOT, AUI.Settings.Buffs.target_debuff_position.relativePoint, AUI.Settings.Buffs.target_debuff_position.offsetX, AUI.Settings.Buffs.target_debuff_position.offsetY)
 		AUI_Buff_Target_Debuffs:SetHandler("OnMouseDown", function(_eventCode, _button, _ctrl, _alt, _shift) OnMouseDown(_eventCode, _button, _ctrl, _alt, _shift, AUI_Buff_Target_Debuffs) end)
-		AUI_Buff_Target_Debuffs:SetHandler("OnMouseUp", function(_eventCode, _button, _ctrl, _alt, _shift) OnMouseUp(_eventCode, _button, _ctrl, _alt, _shift, AUI_Buff_Target_Debuffs, AUI.Settings.Buffs.target_debuff_position) end)	
+		AUI_Buff_Target_Debuffs:SetHandler("OnMouseUp", function(_eventCode, _button, _ctrl, _alt, _shift)
+			OnMouseUp(_eventCode, _button, _ctrl, _alt, _shift, AUI_Buff_Target_Debuffs, AUI.Settings.Buffs.target_debuff_position)
+			SyncTargetDebuffPositionX()
+		end)	
 		
 		g_isInit = true
 	end
