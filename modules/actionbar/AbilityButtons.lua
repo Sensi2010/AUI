@@ -501,7 +501,7 @@ function AUI.Actionbar.AbilityButtons.OnActionSlotEffectUpdated(_category, _slot
 		gAbilitySlotDataArray[_category][_slotId].duration = GetActionSlotEffectDuration(_slotId, _category)	
 		gAbilitySlotDataArray[_category][_slotId].endTime = (GetFrameTimeMilliseconds() + remainTime) / 1000
 		gAbilitySlotDataArray[_category][_slotId].isActive = true
-	else
+	elseif remainTime == 0 then
 		gAbilitySlotDataArray[_category][_slotId].isActive = false
 		gAbilitySlotDataArray[_category][_slotId].duration = 0
 	end	
